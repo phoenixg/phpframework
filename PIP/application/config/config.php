@@ -1,6 +1,6 @@
 <?php 
 
-$config['base_url'] = 'http://localhost/';//right?
+$config['base_url'] = 'http://localhost/phpframework/pip/';// is this right?
 
 $config['default_controller'] = 'main'; 
 $config['error_controller'] = 'error'; 

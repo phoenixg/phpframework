@@ -10,7 +10,7 @@ class Main extends Controller {
 
 	function aaa()
 	{
-		echo 'abc';
+		echo 'abc';	
 
 	}
     
