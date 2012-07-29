@@ -5,6 +5,7 @@ class View {
 	private $pageVars = array();
 	private $template;
 
+	//TODO
 	public function __construct($template)
 	{
 		$this->template = APP_DIR .'views/'. $template .'.php';
