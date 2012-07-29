@@ -7,6 +7,12 @@ class Main extends Controller {
 		$template = $this->loadView('main_view');
 		$template->render();
 	}
+
+	function aaa()
+	{
+		echo 'abc';
+
+	}
     
 }
 

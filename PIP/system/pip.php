@@ -2,28 +2,37 @@
 
 function pip()
 {
+	// 使用全局的配置变量
 	global $config;
     
-    // Set our defaults
-    $controller = $config['default_controller'];
-    $action = 'index';
+    // 设置默认值
+    $controller = $config['default_controller'];//eg. main
+    $action = 'index';//index
     $url = '';
 	
-	// Get request url and script url
-	$request_url = (isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : '';
-	$script_url  = (isset($_SERVER['PHP_SELF'])) ? $_SERVER['PHP_SELF'] : '';
-    	
-	// Get our url path and trim the / of the left and the right
+	// 获取请求URL和脚本URL
+	$request_url = (isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : ''; // '/phpframework/pip/' 
+	$script_url  = (isset($_SERVER['PHP_SELF'])) ? $_SERVER['PHP_SELF'] : ''; // '/phpframework/pip/index.php' 
+   
+	// 获取URL路径，trim掉左右的/
+	// $url = '' 								 -> when uri is : http://localhost/phpframework/pip/index.php/main/index
+	// $url = phpframework/pip/index.ext/aaa/bbb -> when uri is : http://localhost/phpframework/pip/index.ext/aaa/bbb
 	if($request_url != $script_url) $url = trim(preg_replace('/'. str_replace('/', '\/', str_replace('index.php', '', $script_url)) .'/', '', $request_url, 1), '/');
-    
-	// Split the url into segments
+  
+	// 将 $url 分段成 $segments
+	// $segments eq. array('0' => '') when uri is : http://localhost/phpframework/pip/index.php
+	// $segments eq. array('0' => '') when uri is : http://localhost/phpframework/pip/index.php/main/index
+	// $segments eq. array('0' => '') when uri is : http://localhost/phpframework/pip/index.php/aaa/bbb
+	// $segments eq. Array ( [0] => phpframework [1] => pip [2] => index.ext [3] => aaa [4] => bbb ) 
+	//	 							  when uri is : http://localhost/phpframework/pip/index.ext/aaa/bbb
 	$segments = explode('/', $url);
-	
-	// Do our default checks
-	if(isset($segments[0]) && $segments[0] != '') $controller = $segments[0];
-	if(isset($segments[1]) && $segments[1] != '') $action = $segments[1];
 
-	// Get our controller file
+	// 默认检查，$segments没有内容的话就是之前设置的默认值
+	if(isset($segments[0]) && $segments[0] != '') $controller = $segments[0];//main
+	if(isset($segments[1]) && $segments[1] != '') $action = $segments[1];//index
+
+
+	// 加载控制器类文件
     $path = APP_DIR . 'controllers/' . $controller . '.php';
 	if(file_exists($path)){
         require_once($path);
@@ -32,14 +41,14 @@ function pip()
         require_once(APP_DIR . 'controllers/' . $controller . '.php');
 	}
     
-    // Check the action exists
+    // 检查请求的控制器和方法是否存在，如果不存在就使用所定义的错误控制器里的控制器和方法
     if(!method_exists($controller, $action)){
         $controller = $config['error_controller'];
         require_once(APP_DIR . 'controllers/' . $controller . '.php');
         $action = 'index';
     }
 	
-	// Create object and call method
+	// 创建最终请求的控制器对象，并调用请求的方法，执行失败的话就终止程序
 	$obj = new $controller;
     die(call_user_func_array(array($obj, $action), array_slice($segments, 2)));
 }
