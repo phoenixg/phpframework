@@ -13,12 +13,16 @@ function pip()
 	// 获取请求URL和脚本URL
 	$request_url = (isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : ''; // '/phpframework/pip/' 
 	$script_url  = (isset($_SERVER['PHP_SELF'])) ? $_SERVER['PHP_SELF'] : ''; // '/phpframework/pip/index.php' 
-   
+  	
+	//echo $request_url;// /gitprojects/phpframework/PIP/index.php/main/aaa
+	//echo $script_url;// /gitprojects/phpframework/PIP/index.php/main/aaa
+
+
 	// 获取URL路径，trim掉左右的/
 	// $url = '' 								 -> when uri is : http://localhost/phpframework/pip/index.php/main/index
 	// $url = phpframework/pip/index.ext/aaa/bbb -> when uri is : http://localhost/phpframework/pip/index.ext/aaa/bbb
 	if($request_url != $script_url) $url = trim(preg_replace('/'. str_replace('/', '\/', str_replace('index.php', '', $script_url)) .'/', '', $request_url, 1), '/');
-  
+ 	
 	// 将 $url 分段成 $segments
 	// $segments eq. array('0' => '') when uri is : http://localhost/phpframework/pip/index.php
 	// $segments eq. array('0' => '') when uri is : http://localhost/phpframework/pip/index.php/main/index
@@ -47,7 +51,11 @@ function pip()
         require_once(APP_DIR . 'controllers/' . $controller . '.php');
         $action = 'index';
     }
-	
+		
+	var_dump($controller);
+	var_dump($action);
+	var_dump($url);
+
 	// 创建最终请求的控制器对象，并调用请求的方法，执行失败的话就终止程序
 	$obj = new $controller;
     die(call_user_func_array(array($obj, $action), array_slice($segments, 2)));
