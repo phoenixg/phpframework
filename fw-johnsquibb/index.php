@@ -4,7 +4,7 @@
 /**
  * Define document paths
  */
-define('SERVER_ROOT' , '/home/phoenix/public_html/gitprojects/phpframework');
+define('SERVER_ROOT' , '/home/phoenix/public_html/gitprojects/phpframework/fw-johnsquibb/');
 define('SITE_ROOT' , 'http://173.230.150.168/gitprojects/phpframework/fw-johnsquibb/');
 
 /**
