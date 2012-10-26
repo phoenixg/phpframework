@@ -1,6 +1,7 @@
 <?php
 function __autoload($className)
 {
+	//echo $className;
 	list($filename , $suffix) = split('_' , $className);
 	
 	//compose file name
@@ -22,13 +23,21 @@ function __autoload($className)
 //fetch the passed request
 $request = $_SERVER['QUERY_STRING'];
 
-echo 'hello';die;
+
+//echo '<pre>';
+//print_r($_SERVER);die;
 
 //parse the page request and other GET variables
 $parsed = explode('&' , $request);
 
+//echo '<pre>';
+//print_r($parsed);die;
+
 //the page is the first element
 $page = array_shift($parsed);
+
+//echo '<pre>';
+//print_r($page);die;
 
 //the rest of the array are get statements, parse them out.
 $getVars = array();
@@ -38,6 +47,9 @@ foreach ($parsed as $argument)
 	list($variable , $value) = split('=' , $argument);
 	$getVars[$variable] = $value;
 }
+
+//echo '<pre>';
+//print_r($getVars);die;
 
 //compute the path to the file
 $target = SERVER_ROOT . '/controllers/' . $page . '.php';
@@ -66,6 +78,9 @@ else
 	//can't find the file in 'controllers'! 
 	die('page does not exist!');
 }
+
+//echo '<pre>';
+//var_dump($controller);die;
 
 //once we have the controller instantiated, execute the default function
 //pass any GET varaibles to the main method
