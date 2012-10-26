@@ -1,11 +1,6 @@
 <?php
-/**
- * This controller routes all incoming requests to the appropriate controller
- */
-//Automatically includes files containing classes that are called
 function __autoload($className)
 {
-	//parse out filename where class should be located
 	list($filename , $suffix) = split('_' , $className);
 	
 	//compose file name
@@ -26,6 +21,8 @@ function __autoload($className)
 	
 //fetch the passed request
 $request = $_SERVER['QUERY_STRING'];
+
+echo 'hello';die;
 
 //parse the page request and other GET variables
 $parsed = explode('&' , $request);
