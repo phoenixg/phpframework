@@ -3,26 +3,34 @@
 // set error reporting
 error_reporting(E_ALL);
 
+include('./core/debug/dBug.php');
+
 // define paths of folders
 define('DS', DIRECTORY_SEPARATOR);
-define('PATH_BASE', realpath(''));
-define('PATH_APP', PATH_BASE . DS . 'app'); 
-define('PATH_ASSETS', PATH_BASE . DS . 'assets'); 
-define('PATH_CORE', PATH_BASE . DS . 'core'); 
+define('PATH_BASE', realpath('') . DS);
+define('PATH_APP', PATH_BASE . DS . 'app' . DS); 
+define('PATH_ASSETS', PATH_BASE . DS . 'assets' . DS); 
+define('PATH_CORE', PATH_BASE . DS . 'core' . DS); 
 
 // define paths of files
 define('EXT', '.php');
 define('FILE_BASE', PATH_BASE . DS . 'index' . EXT);
 
 // load configuration files
+$config_files = glob(PATH_APP . 'config');
+foreach ($config_files as $file) {
+	new dBug($file);
+}
+
+die;
 $config = include PATH_APP . DS . 'config' . DS . 'application' . EXT;
 
 
 
 
 
-include('./core/debug/dBug.php');
-new dBug($config);
+
+
 /// ------ ////
 
 die;
