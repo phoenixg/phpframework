@@ -1,42 +1,31 @@
 <?php
-//要开源，让群里的高手们参与
 
-/*
-设计原则
-- 约定优于配置原则
-- KISS原则（极简主义）
-- 灵活性/非灵活性
-- 内置firephp调试
-- 优秀的代码书写体验
-- 先进性：优质的思想，优质的代码架构
-- 易读性：不易读的代码不要
-- 表达性：借鉴laravel，方法的操纵让人直接明白它要做的意思
-*/
-
-// /home/phoenix/public_html/gitprojects/phpframework/phx/index.php
-
+// set error reporting
 error_reporting(E_ALL);
 
+// define paths of folders
 define('DS', DIRECTORY_SEPARATOR);
 define('PATH_BASE', realpath(''));
 define('PATH_APP', PATH_BASE . DS . 'app'); 
 define('PATH_ASSETS', PATH_BASE . DS . 'assets'); 
 define('PATH_CORE', PATH_BASE . DS . 'core'); 
 
+// define paths of files
 define('EXT', '.php');
 define('FILE_BASE', PATH_BASE . DS . 'index' . EXT);
 
+// load configuration files
+$config = include PATH_APP . DS . 'config' . DS . 'application' . EXT;
 
-require PATH_APP . DS . 'config' . DS . 'application' . EXT;
+
+
+
 
 include('./core/debug/dBug.php');
-new dBug(PATH_APP . DS . 'config' . DS . 'application' . EXT);
+new dBug($config);
 /// ------ ////
 
 die;
-
-define('SERVER_ROOT' , '/home/phoenix/public_html/gitprojects/phpframework/fw-johnsquibb/');
-define('SITE_ROOT' , 'http://173.230.150.168/gitprojects/phpframework/fw-johnsquibb/');
 
 require_once(SERVER_ROOT . '/controllers/' . 'router.php');
 
