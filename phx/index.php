@@ -16,12 +16,13 @@
 
 error_reporting(E_ALL);
 
-var_dump($aaa);
-die;
+include('./core/debug/dBug.php');
+$arr = array('apple', 'banana'=>array('a' => 123 , 'b' => 456), 'pine apple');
+new dBug($arr); 
 
 /// ------ ////
 
-
+die;
 
 define('SERVER_ROOT' , '/home/phoenix/public_html/gitprojects/phpframework/fw-johnsquibb/');
 define('SITE_ROOT' , 'http://173.230.150.168/gitprojects/phpframework/fw-johnsquibb/');
