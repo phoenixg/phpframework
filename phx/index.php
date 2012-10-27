@@ -17,7 +17,14 @@
 error_reporting(E_ALL);
 
 include('./core/debug/dBug.php');
-$obj = new dBug;
+class testName {
+	var $a;
+	public abc (){
+		return 'dog';
+	}
+}
+
+$obj = new testName;
 new dBug($obj); 
 
 /// ------ ////
