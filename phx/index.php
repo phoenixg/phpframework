@@ -19,7 +19,7 @@ error_reporting(E_ALL);
 include('./core/debug/dBug.php');
 class testName {
 	var $a;
-	public abc (){
+	public function abc (){
 		return 'dog';
 	}
 }
