@@ -17,8 +17,8 @@
 error_reporting(E_ALL);
 
 include('./core/debug/dBug.php');
-$arr = array('apple', 'banana'=>array('a' => 123 , 'b' => 456), 'pine apple');
-new dBug($arr); 
+$obj = new dBug;
+new dBug($obj); 
 
 /// ------ ////
 
