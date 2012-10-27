@@ -18,7 +18,7 @@
 error_reporting(E_ALL);
 
 define('DS', DIRECTORY_SEPARATOR);
-define('PATH_BASE', realpath(''));// /home/phoenix/public_html/gitprojects/phpframework/phx
+define('PATH_BASE', realpath(''));
 define('PATH_APP', PATH_BASE . DS . 'app'); 
 define('PATH_ASSETS', PATH_BASE . DS . 'assets'); 
 define('PATH_CORE', PATH_BASE . DS . 'core'); 
@@ -27,13 +27,10 @@ define('EXT', '.php');
 define('FILE_BASE', PATH_BASE . DS . 'index' . EXT);
 
 
-
-/*
-require('')
-*/
+require PATH_APP . DS . 'config' . DS . 'application' . EXT;
 
 include('./core/debug/dBug.php');
-new dBug(get_defined_constants());
+new dBug(PATH_APP . DS . 'config' . DS . 'application' . EXT);
 /// ------ ////
 
 die;
