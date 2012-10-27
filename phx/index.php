@@ -1,5 +1,4 @@
 <?php
-
 // set error reporting
 error_reporting(E_ALL);
 
@@ -7,27 +6,28 @@ include('./core/debug/dBug.php');
 
 // define paths of folders
 define('DS', DIRECTORY_SEPARATOR);
-define('PATH_BASE', realpath('') . DS);
-define('PATH_APP', PATH_BASE . DS . 'app' . DS); 
-define('PATH_ASSETS', PATH_BASE . DS . 'assets' . DS); 
-define('PATH_CORE', PATH_BASE . DS . 'core' . DS); 
+define('PATH_BASE', __DIR__ . DS);
+define('PATH_APP', PATH_BASE . 'app' . DS); 
+define('PATH_ASSETS', PATH_BASE . 'assets' . DS); 
+define('PATH_CORE', PATH_BASE . 'core' . DS); 
 
 // define paths of files
 define('EXT', '.php');
 define('FILE_BASE', PATH_BASE . DS . 'index' . EXT);
 
+$constants = get_defined_constants(true);
+//new dBug($constants['user']);
+
 // load configuration files
-$config_files = glob(PATH_APP . 'config');
-foreach ($config_files as $file) {
-	new dBug($file);
+$config_files = glob(PATH_APP . 'config' . DS . '*' . EXT);
+
+//TODO
+$config = array();
+foreach ($config_files as $config_file) {
+	$config[$k] = include($config_file);
+	new dBug($config_file);
+	new dBug($config[$k]);
 }
-
-die;
-$config = include PATH_APP . DS . 'config' . DS . 'application' . EXT;
-
-
-
-
 
 
 
