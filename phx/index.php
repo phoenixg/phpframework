@@ -14,18 +14,20 @@
 - 表达性：借鉴laravel，方法的操纵让人直接明白它要做的意思
 */
 
+
+echo realpath(__FILE__);die;
+/*
+define('PATH_APP', value)
+define('EXT', '.php');
+
+
+require('')
+
 error_reporting(E_ALL);
 
 include('./core/debug/dBug.php');
-class testName {
-	var $a;
-	public function abc (){
-		return 'dog';
-	}
-}
+*/
 
-$obj = new testName;
-new dBug($obj); 
 
 /// ------ ////
 
@@ -59,40 +61,6 @@ require path('sys').'laravel.php';
 
 
 	$application_folder = 'application';
-
-
-
-	// Set the current directory correctly for CLI requests
-	if (defined('STDIN'))
-	{
-		chdir(dirname(__FILE__));
-	}
-
-	if (realpath($system_path) !== FALSE)
-	{
-		$system_path = realpath($system_path).'/';
-	}
-
-	// ensure there's a trailing slash
-	$system_path = rtrim($system_path, '/').'/';
-
-	// Is the system path correct?
-	if ( ! is_dir($system_path))
-	{
-		exit("Your system folder path does not appear to be set correctly. Please open the following file and correct this: ".pathinfo(__FILE__, PATHINFO_BASENAME));
-	}
-
-/*
- * -------------------------------------------------------------------
- *  Now that we know the path, set the main path constants
- * -------------------------------------------------------------------
- */
-	// The name of THIS file
-	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
-
-	// The PHP file extension
-	// this global constant is deprecated.
-	define('EXT', '.php');
 
 	// Path to the system folder
 	define('BASEPATH', str_replace("\\", "/", $system_path));
