@@ -14,8 +14,20 @@
 - 表达性：借鉴laravel，方法的操纵让人直接明白它要做的意思
 */
 
+// /home/phoenix/public_html/gitprojects/phpframework/phx/index.php
 
-echo realpath(__FILE__);die;
+define('DS', DIRECTORY_SEPARATOR);
+echo DS;
+echo '<br />';
+/*
+/home/phoenix/public_html/gitprojects/phpframework/
+phx
+/home/phoenix/public_html/gitprojects/phpframework/phx/app/
+/home/phoenix/public_html/gitprojects/phpframework/phx/assets/
+/home/phoenix/public_html/gitprojects/phpframework/phx/core/
+*/
+
+echo realpath('phx/app/');die;
 /*
 define('PATH_APP', value)
 define('EXT', '.php');
