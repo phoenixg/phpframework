@@ -1,5 +1,4 @@
 <?php
-//这是我写的框架，名称叫做phx
 //要开源，让群里的高手们参与
 
 /*
@@ -16,31 +15,25 @@
 
 // /home/phoenix/public_html/gitprojects/phpframework/phx/index.php
 
-define('DS', DIRECTORY_SEPARATOR);
-echo DS;
-echo '<br />';
-/*
-/home/phoenix/public_html/gitprojects/phpframework/
-phx
-/home/phoenix/public_html/gitprojects/phpframework/phx/app/
-/home/phoenix/public_html/gitprojects/phpframework/phx/assets/
-/home/phoenix/public_html/gitprojects/phpframework/phx/core/
-*/
-
-echo realpath('phx/app/');die;
-/*
-define('PATH_APP', value)
-define('EXT', '.php');
-
-
-require('')
-
 error_reporting(E_ALL);
 
-include('./core/debug/dBug.php');
+define('DS', DIRECTORY_SEPARATOR);
+define('PATH_BASE', realpath(''));// /home/phoenix/public_html/gitprojects/phpframework/phx
+define('PATH_APP', PATH_BASE . DS . 'app'); 
+define('PATH_ASSETS', PATH_BASE . DS . 'assets'); 
+define('PATH_CORE', PATH_BASE . DS . 'core'); 
+
+define('EXT', '.php');
+define('FILE_BASE', PATH_BASE . DS . 'index' . EXT);
+
+
+
+/*
+require('')
 */
 
-
+include('./core/debug/dBug.php');
+new dBug(get_defined_constants());
 /// ------ ////
 
 die;
