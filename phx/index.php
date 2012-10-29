@@ -16,7 +16,9 @@ define('EXT', '.php');
 define('FILE_BASE', PATH_BASE . DS . 'index' . EXT);
 
 $constants = get_defined_constants(true);
-//new dBug($constants['user']);
+new dBug($constants['user']);
+die;
+
 
 // load configuration files
 $config_files = glob(PATH_APP . 'config' . DS . '*' . EXT);
