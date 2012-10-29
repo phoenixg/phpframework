@@ -23,8 +23,8 @@ $config_files = glob(PATH_APP . 'config' . DS . '*' . EXT);
 
 $config = array();
 foreach ($config_files as $k =>$config_file) {
-
-	
+	new dBug($k);
+	echo '<br />aaa</br/>';
 	$config[$k] = include($config_file);
 }
 
