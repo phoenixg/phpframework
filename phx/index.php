@@ -21,14 +21,14 @@ $constants = get_defined_constants(true);
 // load configuration files
 $config_files = glob(PATH_APP . 'config' . DS . '*' . EXT);
 
-//TODO
 $config = array();
-foreach ($config_files as $config_file) {
+foreach ($config_files as $k =>$config_file) {
+
+	
 	$config[$k] = include($config_file);
-	new dBug($config_file);
-	new dBug($config[$k]);
 }
 
+new dBug($config);
 
 
 /// ------ ////
