@@ -27,7 +27,7 @@ foreach ($config_files as $config_file) {
 	$config[$key] = include($config_file);
 }
 
-new dBug($config);
+include('./test/test.php');
 
 
 /// ------ ////
