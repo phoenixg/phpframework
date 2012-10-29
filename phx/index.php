@@ -27,8 +27,8 @@ foreach ($config_files as $config_file) {
 	$config[$key] = include($config_file);
 }
 
-include('./test/test.php');
 
+var_dump($GLOBELS);
 
 /// ------ ////
 
