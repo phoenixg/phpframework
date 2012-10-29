@@ -23,7 +23,7 @@ $config_files = glob(PATH_APP . 'config' . DS . '*' . EXT);
 
 $config = array();
 foreach ($config_files as $config_file) {
-	$key = substr(strrchr($config_file, '/'), 1, -strlen(EXT)-1);
+	$key = substr(strrchr($config_file, '/'), 1, -strlen(EXT));
 	$config[$key] = include($config_file);
 }
 
