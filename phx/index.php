@@ -13,12 +13,10 @@ define('PATH_CORE', PATH_BASE . 'core' . DS);
 
 // define paths of files
 define('EXT', '.php');
-define('FILE_BASE', PATH_BASE . DS . 'index' . EXT);
+define('FILE_BASE', PATH_BASE . 'index' . EXT);
 
 $constants = get_defined_constants(true);
-new dBug($constants['user']);
-die;
-
+//new dBug($constants['user']);
 
 // load configuration files
 $config_files = glob(PATH_APP . 'config' . DS . '*' . EXT);
