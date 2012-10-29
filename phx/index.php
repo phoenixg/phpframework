@@ -23,12 +23,9 @@ $config_files = glob(PATH_APP . 'config' . DS . '*' . EXT);
 
 $config = array();
 foreach ($config_files as $config_file) {
-
-
-	$config[] = include($config_file);
+	$key = substr(strrchr($config_file, '/'), 1, -strlen(EXT)-1);
+	$config[$key] = include($config_file);
 }
-echo strrchr('/aa/bb/cc/test.php', '/');
-die;
 
 new dBug($config);
 
