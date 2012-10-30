@@ -1,7 +1,8 @@
 <?php
-// set error reporting
+// set error reporting level
 error_reporting(E_ALL);
 
+// include dBug class
 include('./core/debug/dBug.php');
 
 // define paths of folders
@@ -32,8 +33,12 @@ foreach ($config_files as $config_file) {
 
 unset($config_files);
 
-new dBug($GLOBALS);die;
+new dBug($GLOBALS['GLOBALS']['GLOBALS']);die;
 die;
+
+
+get config value via : Config::get('application.environment');
+set config value via : Config::set('application.environment');
 
 
 
