@@ -36,10 +36,10 @@ unset($config_files);
 new dBug($GLOBALS['GLOBALS']['GLOBALS']);die;
 die;
 
-
+/*
 get config value via : Config::get('application.environment');
 set config value via : Config::set('application.environment');
-
+*/
 
 
 
