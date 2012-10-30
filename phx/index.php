@@ -15,44 +15,47 @@ define('PATH_CORE', PATH_BASE . 'core' . DS);
 define('EXT', '.php');
 define('FILE_BASE', PATH_BASE . 'index' . EXT);
 
-$constants = get_defined_constants(true);
+//$constants = get_defined_constants(true);
 //new dBug($constants['user']);
 
 // load configuration files
 $config_files = glob(PATH_APP . 'config' . DS . '*' . EXT);
 
+// retrieve configuration array
 $config = array();
 foreach ($config_files as $config_file) {
-	$key = substr(strrchr($config_file, '/'), 1, -strlen(EXT));
+	$key = substr(strrchr($config_file, DS), 1, -strlen(EXT));
 	$config[$key] = include($config_file);
+	unset($key);
+	unset($config_file);
 }
 
+unset($config_files);
 
-var_dump($GLOBELS);
-
-/// ------ ////
-
+new dBug($GLOBALS);die;
 die;
 
-require_once(SERVER_ROOT . '/controllers/' . 'router.php');
 
 
 
-/// ------ ////
 
 
 
-require '../paths.php';
+die;
+$conf = 'aaa';
+
+die;
+function foobar() {
+	global $conf;
+}
+foobar();
+new dBug($GLOBALS);die;
+die;
 
 
-// --------------------------------------------------------------
-// Launch Laravel.
-// --------------------------------------------------------------
-require path('sys').'laravel.php';
 
 
 
-/// ------ ////
 
 
 	$system_path = 'system';
