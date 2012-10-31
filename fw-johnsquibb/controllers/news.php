@@ -4,24 +4,17 @@
  */
 class News_Controller
 {
-	/**
-	 * This template variable will hold the 'view' portion of our MVC for this 
-	 * controller
-	 */
+	
 	public $template = 'news';
 	
-	/**
-	 * This is the default function that will be called by router.php
-	 * 
-	 * @param array $getVars the GET variables posted to index.php
-	 */
+
 	public function main(array $getVars)
 	{
-//print_r($getVars);die;
+new dBug($getVars);
 
 		$newsModel = new News_Model;
 
-//print_r($newsModel);die;
+new dBug($newsModel);
 		
 		//get an article
 		$article = $newsModel->get_article($getVars['article']);

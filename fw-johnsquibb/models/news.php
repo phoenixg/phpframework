@@ -46,9 +46,10 @@ class News_Model
 	public function get_article($articleName)
 	{
 		//fetch article from array
-		$article = $this->articles[$articleName];
+		//$article = $this->articles[$articleName];
 		
-		return $article;
+		//return $article;
+		return 'abcdefg';
 	}
 	
 }

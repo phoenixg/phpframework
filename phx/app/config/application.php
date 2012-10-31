@@ -1,6 +1,8 @@
 <?php
 
 return array(
-	'abc' => '123',
-	'def' => '456'
+	'environment'	=> 'development', //or production
+	'mode_debug'	=> 'on', //or off
+	'key'			=> '123456abcdefg'
+
 );

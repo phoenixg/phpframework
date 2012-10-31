@@ -1,8 +1,8 @@
 <?php
 function __autoload($className)
 {
-	//echo $className;
-	list($filename , $suffix) = split('_' , $className);
+new dBug($className);
+	list($filename , $suffix) = explode('_' , $className);
 	
 	//compose file name
 	$file = SERVER_ROOT . '/models/' . strtolower($filename) . '.php';
@@ -23,36 +23,33 @@ function __autoload($className)
 //fetch the passed request
 $request = $_SERVER['QUERY_STRING'];
 
-
-//echo '<pre>';
-//print_r($_SERVER);die;
+new dBug($request);
 
 //parse the page request and other GET variables
 $parsed = explode('&' , $request);
 
-//echo '<pre>';
-//print_r($parsed);die;
+new dBug($parsed);
 
 //the page is the first element
 $page = array_shift($parsed);
 
-//echo '<pre>';
-//print_r($page);die;
+new dBug($page);
 
 //the rest of the array are get statements, parse them out.
 $getVars = array();
 foreach ($parsed as $argument)
 {
 	//split GET vars along '=' symbol to separate variable, values
-	list($variable , $value) = split('=' , $argument);
+	list($variable , $value) = explode('=' , $argument);
 	$getVars[$variable] = $value;
 }
 
-//echo '<pre>';
-//print_r($getVars);die;
+new dBug($getVars);
 
 //compute the path to the file
 $target = SERVER_ROOT . '/controllers/' . $page . '.php';
+
+new dBug($target);
 
 //get target
 if (file_exists($target))
@@ -65,6 +62,7 @@ if (file_exists($target))
 	//instantiate the appropriate class
 	if (class_exists($class))
 	{
+		new dBug($class);
 		$controller = new $class;
 	}
 	else
@@ -79,11 +77,10 @@ else
 	die('page does not exist!');
 }
 
-//echo '<pre>';
-//var_dump($controller);die;
+new dBug($controller);
 
 //once we have the controller instantiated, execute the default function
 //pass any GET varaibles to the main method
 $controller->main($getVars);
 
-
+echo 'aa';

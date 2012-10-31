@@ -1,7 +1,10 @@
 <?php
 
 return array (
-	'a' => 'aaa',
-	'b' => 'bbb'
-
+	'host'		=> '173.230.150.168',
+	'database'	=> '',
+	'username'	=> '',
+	'password'	=> '',
+	'charset'	=> 'utf8',
+	'prefix'	=> '',
 );
