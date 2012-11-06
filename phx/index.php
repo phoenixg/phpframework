@@ -11,12 +11,11 @@ define('PATH_BASE', __DIR__ . DS);
 define('PATH_APP', PATH_BASE . 'app' . DS); 
 define('PATH_ASSETS', PATH_BASE . 'assets' . DS); 
 define('PATH_CORE', PATH_BASE . 'core' . DS); 
+define('PATH_CORE_LIBS', PATH_BASE . 'core' . DS . 'libs' . DS);
 
 // define paths of files
 define('EXT', '.php');
 define('FILE_BASE', PATH_BASE . 'index' . EXT);
-
-
 
 // load configuration files
 $config_files = glob(PATH_APP . 'config' . DS . '*' . EXT);
@@ -29,15 +28,18 @@ foreach ($config_files as $config_file) {
 	unset($key);
 	unset($config_file);
 }
-
 unset($config_files);
 
+// load config class, intitialize configuration array
+include(PATH_CORE_LIBS . 'config.php');
+$CFG= new Config($config);
+unset($config);
 
+$CFG::parse('application.environment');
+new dBug($CFG::$items);
+new dBug($CFG::get('application'));
+new dBug($CFG::get('application.environment'));
 
-/*
-get config value via : Config::get('application.environment');
-set config value via : Config::set('application.environment');
-*/
 
 
 new dBug($GLOBALS);
