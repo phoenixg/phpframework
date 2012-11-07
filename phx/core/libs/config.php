@@ -32,11 +32,18 @@ class Config {
 		{
 			return static::$items[$string];
 		} else {
-			foreach ($string_arr as $k => $v) {
-				echo '<br />';
-				echo $k . $v;
-				echo '<br />';
+			$index = '';
+			foreach ($string_arr as $v) {
+				$index .= "['".$v."']";
 			}
+			echo 'bbb';
+			echo $index;
+			echo 'bbb';
+			echo static::$items['application']['debug_soft'];
+			echo 'aaa';
+			echo static::$items.$index;		
+			echo 'aaa';
+			var_dump(eval('static::\$items\$index'));
 		}
 
 		if($string_arr_count == 2)
