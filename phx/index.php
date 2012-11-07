@@ -35,7 +35,16 @@ include(PATH_CORE_LIBS . 'config.php');
 $CFG= new Config($config);
 unset($config);
 
-$CFG::parse('application.environment');
+echo 'Total $items is <pre>';
+print_r($CFG::$items);
+echo '</pre>';
+
+$string = 'application.debug_soft';
+echo 'I am going to parse:' . '<i>'.$string.'</i>';
+
+echo $CFG::parse($string);
+die;
+
 new dBug($CFG::$items);
 new dBug($CFG::get('application'));
 new dBug($CFG::get('application.environment'));
