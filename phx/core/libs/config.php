@@ -21,12 +21,54 @@ class Config {
 		}
 	}
 
-	public static function parse($string)
+	public static function parse($str)
 	{
+		$str = 'static::$items["'.str_replace('.','"]["',$str).'"]';
+		return eval('return isset('.$str.')?'.$str.':"not exists";'); 
+
+
+
+
+
+		/*
+		$keys = explode('.', $str);
+		$error = '';
+
+		if(is_array($keys)){
+			foreach ($keys as $k){
+				if(is_array(static::$items) && key_exists($k, static::$items)){
+					$v = static::$items = static::$items[$k];
+				}else{
+					$error =  'path not found';
+					break;
+				}
+			}
+		} else {
+			$error = 'format error';
+		}
+
+		if($error == ''){
+			var_dump(static::$items);
+			return $v;
+		}else{
+			echo $error;
+		}
+		*/
+
+
+
+
+
+
+
+
+
+
+
+		/*
 		$string_arr = explode('.', $string);
 		$string_arr_count = count($string_arr);
-		//echo '&nbsp; so the string is '.$string;
-		//echo '&nbsp; and '.'string_arr_count is'.$string_arr_count;
+
 
 		if($string_arr_count == 1)
 		{
@@ -57,6 +99,7 @@ class Config {
 			list($filename, $item, $subitem) = $string_arr;
 			new dBug(static::$items[$filename][$item][$subitem]);
 		}
+		*/
 
 	}
 

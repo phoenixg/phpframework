@@ -32,19 +32,22 @@ unset($config_files);
 
 // load config class, intitialize configuration array
 include(PATH_CORE_LIBS . 'config.php');
-$CFG= new Config($config);
+$CFG = new Config($config);
 unset($config);
 
 echo 'Total $items is <pre>';
 print_r($CFG::$items);
 echo '</pre>';
 
-$string = 'application.debug_soft';
-echo 'I am going to parse:' . '<i>'.$string.'</i>';
-
-echo $CFG::parse($string);
+$string = 'application.aaa.ddd.eee';
+echo 'I am going to parse:' . '<i>'.$string.'</i><br />';
+echo 'result is <pre>';
+print_r($CFG::parse($string));
+print_r($CFG::$items);
+echo '</pre>';
 die;
 
+/*
 new dBug($CFG::$items);
 new dBug($CFG::get('application'));
 new dBug($CFG::get('application.environment'));
@@ -55,5 +58,5 @@ new dBug($GLOBALS);
 
 $constants = get_defined_constants(true);
 new dBug($constants['user']);
-
+*/
 
