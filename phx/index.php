@@ -30,22 +30,14 @@ foreach ($config_files as $config_file) {
 }
 unset($config_files);
 
-// load config class, intitialize configuration array
+// load config class, intitialize configuration mechanism
 include(PATH_CORE_LIBS . 'config.php');
 $CFG = new Config($config);
 unset($config);
 
-echo 'Total $items is <pre>';
-print_r($CFG::$items);
-echo '</pre>';
-
-$string = 'application.aaa.ddd.eee';
-echo 'I am going to parse:' . '<i>'.$string.'</i><br />';
-echo 'result is <pre>';
-print_r($CFG::parse($string));
-print_r($CFG::$items);
-echo '</pre>';
-die;
+$string = 'application.aaa.ddd.eee.sfef';
+$string = 'application.aaa.ddd';
+echo '<pre>';var_dump($CFG::get($string));echo '</pre>';
 
 /*
 new dBug($CFG::$items);
