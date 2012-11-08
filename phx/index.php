@@ -35,8 +35,10 @@ include(PATH_CORE_LIBS . 'config.php');
 $CFG = new Config($config);
 unset($config);
 
-$string = 'application.aaa.ddd.eee.sfef';
-$string = 'application.aaa.ddd';
+
+new dBug($CFG::$items);
+
+$string = 'application.aaa.ddd.eee.out';
 echo '<pre>';var_dump($CFG::get($string));echo '</pre>';
 
 /*

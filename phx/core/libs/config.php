@@ -1,8 +1,5 @@
 <?php defined('DS') or die('Direct access forbid!');
 
-//TODO
-//get, set , has, get() == getall()
-
 class Config {
 
 	public static $items = array();
@@ -10,43 +7,31 @@ class Config {
 	public function __construct(array $arr)
 	{
 		static::$items = $arr;
+		//var_export(static::$items);
+		//var_dump(static::$items["application"]["aaa"]["ddd"]["eee"]["out"]);
 	}
 
-	public static function get($key, $default = null)
+	public static function get($str, $default = null)
 	{
-		$key = static::parse($key);
-		var_dump($key);
-		if( $key == null ){ 
-			return 'yes';
-		} else {
-			return 'no';
-		}
-		die;
-		if (is_null(static::$items) || !isset(static::$items[$key])) {
+		$str = static::parse($str);
+		if (is_null($str) || !isset($str)) {
 			return $default;
-		} else {
-			return static::$items[$key];
 		}
+
+		return $str;
 	}
 
 	protected static function parse($str)
 	{
 		$str = 'static::$items["'.str_replace('.','"]["',$str).'"]';
-		$key =  eval('return isset('.$str.')?'.$str.':null;'); 
-		return $key;
+		echo ($str);
+		var_dump(isset($str));
+		eval('return isset('.$str.')?'.$str.':null;');
 	}
 
-
-
-///////////////
-	public static function set()
+	public static function has($str)
 	{
-		return null;
-	}
-
-	public static function has($key)
-	{
-		return ! is_null(static::get($key));
+		return ! is_null(static::get($str));
 	}
 
 
