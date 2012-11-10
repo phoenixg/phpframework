@@ -1,6 +1,5 @@
 <?php
-$arr = array('a'=>array('r'=>111,'s'=>222),
-	         'b'=>array('t'=>333,'u'=>444, 'v'=>array('abcdefg'=>'123456')),
-	         'c'=>555
-);
-$str = "b.v.abcdefg";
+$str = 'static::$items["application"]["aaa"]["ddd"]["eee"]["out"]';
+echo substr($str, 0 , strrpos($str, '['));
+
+var_dump(eval('return  "whatever";'));

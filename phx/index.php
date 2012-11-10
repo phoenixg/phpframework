@@ -38,7 +38,7 @@ unset($config);
 
 new dBug($CFG::$items);
 
-$string = 'application.aaa.ddd.eee.out';
+$string = 'application.aaa.ddd.eee';
 echo '<pre>';var_dump($CFG::get($string));echo '</pre>';
 
 /*
