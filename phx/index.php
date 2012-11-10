@@ -35,22 +35,11 @@ include(PATH_CORE_LIBS . 'config.php');
 $CFG = new Config($config);
 unset($config);
 
-
-new dBug($CFG::$items);
-
-$string = 'application.aaa.ddd.eee';
-echo '<pre>';var_dump($CFG::get($string));echo '</pre>';
+echo $CFG::get('application.aaa.ddd.eee');
 
 /*
-new dBug($CFG::$items);
-new dBug($CFG::get('application'));
-new dBug($CFG::get('application.environment'));
-
-
-
 new dBug($GLOBALS);
 
 $constants = get_defined_constants(true);
 new dBug($constants['user']);
 */
-
