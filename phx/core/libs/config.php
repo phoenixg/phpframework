@@ -1,52 +1,45 @@
 <?php defined('DS') or die('Direct access forbid!');
 
-//TODO
-//get, set , has, get() == getall()
-
 class Config {
 
 	public static $items = array();
 
-	/**
-	 * Determine if a configuration item exists
-	 *
-	 * @param  string  $key
-	 * @return bool
-	 */
-	public static function has($key)
+	public function __construct(array $arr)
 	{
-		return ! is_null(static::get($key));
+		static::$items = $arr;
+		//var_export(static::$items);
+		//var_dump(static::$items["application"]["aaa"]["ddd"]["eee"]["out"]);
 	}
 
-	/**
-	 * Get a configuration item.
-	 *
-	 * If no item is requested, the entire configuration array will be returned.
-	 *
-	 * @param  string  $key
-	 * @param  mixed   $default
-	 * @return array
-	 */
-	public static function get($key, $default = null)
+	public static function get($str, $default = null)
 	{
-		list($bundle, $file, $item) = static::parse($key);
-
-		if ( ! static::load($bundle, $file)) return value($default);
-
-		$items = static::$items[$bundle][$file];
-
-		// If a specific configuration item was not requested, the key will be null,
-		// meaning we'll return the entire array of configuration items from the
-		// requested configuration file. Otherwise we can return the item.
-		if (is_null($item))
-		{
-			return $items;
+		$str = static::parse($str);
+		if (is_null($str) || !isset($str)) {
+			return $default;
 		}
-		else
-		{
-			return array_get($items, $item, $default);
-		}
+
+		return $str;
 	}
+
+	protected static function parse($str)
+	{
+		$str = 'static::$items["'.str_replace('.','"]["',$str).'"]';
+		$str_parent = substr($str, 0 , strrpos($str, '['));
+
+		if(eval('return is_array('.$str_parent.');') && eval('return isset('.$str.');')){
+			return eval('return '.$str.';');
+		}
+		
+		return null;
+	}
+
+	public static function has($str)
+	{
+		return ! is_null(static::get($str));
+	}
+
+
+
 
 
 
