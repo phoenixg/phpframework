@@ -7,3 +7,30 @@
 - 优质的代码和架构
 - 代码易读性
 - 表达性：借鉴laravel，方法的操纵和参数让人直接明白它要做的意思
+
+
+鸣谢 justjavac 等
+
+
+『最新文章』的url是 article/tab/last
+『热门文章』的url是 article/tab/hot
+这样，每次点击链接，页面都会刷新。即使不启用 js 页面也可以正常访问浏览。
+现在往里面加入 js 代码，【增强】它的用户体验。
+我还没有说完呢。问题是什么呢？
+不能 history，
+不能外部链接直接访问
+不过看看 twitter 或者 gmail 就知道怎么解决了。就是用js修改 segment
+也就是
+『最新文章』的url是 article/tab#last
+『热门文章』的url是 article/tab#hot
+PHP:
+class Tab extends Controller{
+    function last() // 处理 article/tab/last
+    function hot()  // 处理 article/tab/hot
+}
+JS:
+var Tab = {
+    "last": function() // 处理 article/tab#last
+    "hot": function()  // 处理 article/tab#hot
+}
+框架的作用是 DRY
