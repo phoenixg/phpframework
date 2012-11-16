@@ -1,6 +1,6 @@
 <?php
-// set error reporting level
-error_reporting(E_ALL);
+// set timzone
+date_default_timezone_set('Asia/Shanghai');
 
 // include dBug class
 include('./core/debug/dBug.php');
@@ -12,10 +12,18 @@ define('PATH_APP', PATH_BASE . 'app' . DS);
 define('PATH_ASSETS', PATH_BASE . 'assets' . DS); 
 define('PATH_CORE', PATH_BASE . 'core' . DS); 
 define('PATH_CORE_LIBS', PATH_BASE . 'core' . DS . 'libs' . DS);
+define('PATH_CORE_HELPERS', PATH_BASE . 'core' . DS . 'helpers' . DS);
 
 // define paths of files
 define('EXT', '.php');
 define('FILE_BASE', PATH_BASE . 'index' . EXT);
+
+// set error reporting level
+error_reporting(E_ALL);
+
+require(PATH_CORE_HELPERS . 'error.php');
+$error_handler = set_error_handler('custom_error_handler');  
+
 
 // load configuration files
 $config_files = glob(PATH_APP . 'config' . DS . '*' . EXT);
@@ -35,11 +43,11 @@ include(PATH_CORE_LIBS . 'config.php');
 $CFG = new Config($config);
 unset($config);
 
-echo $CFG::get('application.aaa.ddd.eee');
+//echo $CFG::get('application.aaa.ddd.eee');
 
 /*
 new dBug($GLOBALS);
-
+*/
 $constants = get_defined_constants(true);
 new dBug($constants['user']);
-*/
+
