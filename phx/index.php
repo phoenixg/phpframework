@@ -36,7 +36,7 @@ unset($config);
 
 /*
 new dBug($GLOBALS);
-*/
+
 $constants = get_defined_constants(true);
 new dBug($constants['user']);
-
+*/
