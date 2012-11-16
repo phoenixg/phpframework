@@ -5,7 +5,7 @@ date_default_timezone_set('Asia/Shanghai');
 // include dBug class
 include('./core/debug/dBug.php');
 
-require('defs.php');
+require('constants.php');
 
 // set error reporting level
 error_reporting(E_ALL);
