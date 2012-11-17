@@ -11,7 +11,7 @@ require('constants.php');
 error_reporting(E_ALL);
 
 require(PATH_CORE_HELPERS . 'error.php');
-$error_handler = set_error_handler('custom_error_handler');  
+$error_handler = set_error_handler('custom_error_handler');
 
 
 // load configuration files
