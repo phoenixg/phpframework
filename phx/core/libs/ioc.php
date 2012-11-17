@@ -1,4 +1,4 @@
-<?php defined('DS') or die('Direct access forbid!');
+<?php
 
 //directly copied from laravel
 //TODO
