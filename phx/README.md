@@ -8,6 +8,11 @@
 - 代码易读性
 - 表达性：借鉴laravel，方法的操纵和参数让人直接明白它要做的意思
 
+借用其他框架中收集的优秀函数
+完全遵循PSR-2编码规范
+全英文文档的撰写
+gitpage等项目官方网站
+
 插件用注册器模式
 
 鸣谢 justjavac 等
@@ -35,3 +40,27 @@ var Tab = {
     "hot": function()  // 处理 article/tab#hot
 }
 框架的作用是 DRY
+
+
+
+assets
+js-php conversion
+encryption
+database
+	orm
+	active record
+	migration
+	scafforlding
+bootstrap
+uri
+session
+email
+auth
+config
+string
+file
+markdown 
+route
+
+
+
