@@ -14,11 +14,7 @@ error_reporting(E_ALL);
 require(PATH_CORE_HANDLERS . 'error.php');
 set_error_handler('_PhxErrorHandler');
 
-if( 1 == 1 ){  
-    trigger_error("发生了一个错误");
-}
-
-
+trigger_error("发生了一个错误");
 
 // load configuration files
 $config_files = glob(PATH_APP . 'config' . DS . '*' . EXT);
