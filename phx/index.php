@@ -10,8 +10,14 @@ require('constants.php');
 // set error reporting level
 error_reporting(E_ALL);
 
-require(PATH_CORE_HELPERS . 'error.php');
-$error_handler = set_error_handler('custom_error_handler');
+// set error handler
+require(PATH_CORE_HANDLERS . 'error.php');
+set_error_handler('_PhxErrorHandler');
+
+if( 1 == 1 ){  
+    trigger_error("发生了一个错误");
+}
+
 
 
 // load configuration files

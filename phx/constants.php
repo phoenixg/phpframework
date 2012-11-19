@@ -8,6 +8,7 @@ define('PATH_ASSETS', PATH_BASE . 'assets' . DS);
 define('PATH_CORE', PATH_BASE . 'core' . DS);
 define('PATH_CORE_LIBS', PATH_BASE . 'core' . DS . 'libs' . DS);
 define('PATH_CORE_HELPERS', PATH_BASE . 'core' . DS . 'helpers' . DS);
+define('PATH_CORE_HANDLERS', PATH_BASE . 'core' . DS . 'handlers' . DS);
 
 // define paths of files
 define('EXT', '.php');
