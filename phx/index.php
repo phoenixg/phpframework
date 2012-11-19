@@ -16,6 +16,18 @@ set_error_handler('_PhxErrorHandler');
 
 trigger_error("发生了一个错误");
 
+
+
+
+
+
+// set exception handler
+require(PATH_CORE_HANDLERS . 'exception.php');
+set_exception_handler('_PhxExceptionHandler');
+
+throw new Exception('未捕获的异常');
+echo "Not Executed\n";
+
 // load configuration files
 $config_files = glob(PATH_APP . 'config' . DS . '*' . EXT);
 

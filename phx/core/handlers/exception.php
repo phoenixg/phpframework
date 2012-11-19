@@ -1,10 +1,7 @@
 <?php
-
-function exception_handler($exception) {
-  echo "Uncaught exception: " , $exception->getMessage(), "\n";
+//TODO:change to class
+function _PhxExceptionHandler($e) {
+    echo "Uncaught exception: " , $e->getMessage(), "\n";
 }
 
-set_exception_handler('exception_handler');
 
-throw new Exception('Uncaught Exception');
-echo "Not Executed\n";
