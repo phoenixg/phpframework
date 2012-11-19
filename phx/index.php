@@ -37,7 +37,7 @@ unset($config_files);
 
 // load config class, intitialize configuration mechanism
 include(PATH_CORE_LIBS . 'config.php');
-$CFG = new Config($config);
+$CFG = new Phx\Config($config);
 unset($config);
 
 
