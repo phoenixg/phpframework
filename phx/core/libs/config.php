@@ -25,9 +25,9 @@ class Config
     protected static function parse($str)
     {
         $str = 'static::$items["' . str_replace('.', '"]["', $str) . '"]';
-        $str_parent = substr($str, 0 , strrpos($str, '['));
+        $str_parent = substr($str, 0, strrpos($str, '['));
 
-        if(eval('return is_array('.$str_parent.');') && eval('return isset('.$str.');')){
+        if (eval('return is_array('.$str_parent.');') && eval('return isset('.$str.');')){
             return eval('return '.$str.';');
         }
         
