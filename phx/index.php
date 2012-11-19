@@ -27,10 +27,14 @@ foreach ($config_files as $config_file) {
 }
 unset($config_files);
 
+
+
 // load config class, intitialize configuration mechanism
 include(PATH_CORE_LIBS . 'config.php');
 $CFG = new Config($config);
 unset($config);
+
+
 
 //echo $CFG::get('application.aaa.ddd.eee');
 
