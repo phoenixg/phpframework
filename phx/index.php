@@ -11,10 +11,11 @@ require('constants.php');
 error_reporting(E_ALL);
 
 // set error handler
+// use trigger_error("发生了一个错误") to trigger an error manually
 require(PATH_CORE_HANDLERS . 'error.php');
 set_error_handler('_PhxErrorHandler');
 
-trigger_error("发生了一个错误");
+
 
 
 
