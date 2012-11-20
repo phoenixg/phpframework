@@ -26,15 +26,31 @@ set_error_handler(function ($errorNo, $errMsg, $errFilePath, $errLine){
 
 // set exception handler
 // 使用 throw new Exception('异常信息');
+/*
 set_exception_handler(function ($e) {
     echo "出现异常：" , $e->getMessage(), "\n";
 });
+*/
+//require('./core/libs/phxexception.php');
 
+class Phxexception extends Exception
+{
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function getMsg()
+    {
+        $message = $this->getLine() . $this->getMessage();
+        return $message;
+    }
+}
 
 try {
-    throw new Exception("异常信息");
-} catch(Exception $e) {
-    echo $e;
+    throw new Phxexception("异常信息");
+} catch(Phxexception $e) {
+    echo $e->getMsg();
 }
 
 
