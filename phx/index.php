@@ -25,8 +25,10 @@ set_error_handler(function ($errorNo, $errMsg, $errFilePath, $errLine){
 
 
 // set exception handler
-require(PATH_CORE_HANDLERS . 'exception.php');
-set_exception_handler('_PhxExceptionHandler');
+set_exception_handler(function ($e) {
+    echo $e;
+    echo "Uncaught exception: " , $e->getMessage(), "\n";
+});
 
 throw new Exception('未捕获的异常');
 echo "Not Executed\n";
