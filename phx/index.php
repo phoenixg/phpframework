@@ -25,13 +25,20 @@ set_error_handler(function ($errorNo, $errMsg, $errFilePath, $errLine){
 
 
 // set exception handler
+// 使用 throw new Exception('异常信息');
 set_exception_handler(function ($e) {
-    echo $e;
-    echo "Uncaught exception: " , $e->getMessage(), "\n";
+    echo "出现异常：" , $e->getMessage(), "\n";
 });
 
-throw new Exception('未捕获的异常');
-echo "Not Executed\n";
+
+try {
+    throw new Exception("异常信息");
+} catch(Exception $e) {
+    echo $e;
+}
+
+
+
 
 // load configuration files
 $config_files = glob(PATH_APP . 'config' . DS . '*' . EXT);
