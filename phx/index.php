@@ -30,14 +30,17 @@ set_error_handler(function ($errorNo, $errMsg, $errFilePath, $errLine){
 set_exception_handler(function ($e) {
     echo "出现异常：" , $e->getMessage(), "\n";
 });
+
+set_exception_handler is for handling exceptions that are not caught. (try { } catch() {}
+for instance, you could setup an exception_handler that logs all of the exceptions to file
+
 */
 //require('./core/libs/phxexception.php');
 
 class Phxexception extends Exception
 {
-    public function __construct()
-    {
-        parent::__construct();
+    public function __construct($message, $code = 0, Exception $previous = null) {
+        parent::__construct($message, $code, $previous);
     }
 
     public function getMsg()
