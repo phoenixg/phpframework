@@ -49,10 +49,9 @@ set_error_handler(function ($errorNo, $errMsg, $errFilePath, $errLine){
     echo '行号：' . $errLine . '<br />';
     echo '位置：' . $errFilePath . '<br />';
 
-    $logInfo = '[' . date('Y/m/d H:i:s') . ']' . ' ' . $errorNo . ' ' . $errMsg . ' On Line:' . $errLine . ' ' . $errFilePath . "\n";
+    $logInfo = '[' . date('Y-m-d H:i:s') . ']' . ' ' . $errorNo . ' ' . $errMsg . ' On Line:' . $errLine . ' ' . $errFilePath . "\n";
     error_log($logInfo, 3, FILE_LOG_ERRORS);
 });
-
 
 /*
  *---------------------------------------------------------------
@@ -64,7 +63,9 @@ set_error_handler(function ($errorNo, $errMsg, $errFilePath, $errLine){
  * 使用 throw new Exception('异常信息') 手动触发该异常处理
  */
 set_exception_handler(function ($e) {
-    echo "记录异常行号：" . $e->getLine() . ' 记录异常信息：' . $e->getMessage(), "\n";
+    $logInfo = "[".date("Y-m-d H:i:s")."] 异常行号：" . $e->getLine() . ' 异常文件：' . $e->getFile() . ' 异常信息：' . $e->getMessage() . "\n";
+    echo $logInfo;
+    error_log($logInfo, 3, FILE_LOG_EXCEPTIONS);
 });
 
 /*
@@ -87,6 +88,8 @@ class Phxexception extends Exception
     //定制的异常信息内容
     public function getMsg()
     {
+        //TODO：添加时间
+        error_log("*\n", 3, FILE_LOG_EXCEPTIONS);
         $message = '异常抛出的行号：' . $this->getLine() . '  异常信息：' . $this->getMessage();
         return $message;
     }
