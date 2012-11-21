@@ -1,6 +1,6 @@
 <?php
 /**
- * Phx - A Micro PHP Framework For Beginners
+ * Phx - A Micro PHP Framework For Beginners With Some Cool Features
  *
  * @author   PHOENIX <gopher.huang@gmail.com>
  * @link     https://github.com/phoenixg/phpframework
@@ -90,7 +90,9 @@ class Phxexception extends Exception
     {
         //TODO：添加时间
         error_log("*\n", 3, FILE_LOG_EXCEPTIONS);
-        $message = '异常抛出的行号：' . $this->getLine() . '  异常信息：' . $this->getMessage();
+        $message = '异常抛出的行号：' . $this->getLine() . 
+                   ' 异常文件：' . $this->getFile() .
+                   ' 异常信息：' . $this->getMessage();
         return $message;
     }
 }
@@ -101,19 +103,21 @@ class Phxexception extends Exception
  * IoC CONTAINER
  *---------------------------------------------------------------
  * 先写好IoC机制，然后就可以加载类了，然后就可以写log类了（用IoC加载Log等类）
+ * Add your self-defined IoC class in ioc.php file
  */
 require('./core/libs/ioc.php');
 require('./core/libs/log.php');
 IoC::register('log', function() {  
-   $photo = new Log;  
-   //$photo->setDB('...');  
-   //$photo->setConfig('...');  
-   return $photo;  
+   $log = new Log;  
+   //$log->setDB('...');  
+   //$log->setConfig('...');  
+   return $log;  
 });  
-// Fetch new photo instance with dependencies set  
-$log = IoC::resolve('photo');  
-
-
+// Fetch new log instance with dependencies set  
+$log = IoC::resolve('log');  
+var_dump($log);
+$log = IoC::resolve('log'); 
+var_dump($log);
 
 
 

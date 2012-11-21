@@ -12,14 +12,15 @@ class IoC {
    // 获取已注册类的实例
    public static function resolve($name)  
    {  
-      try ( static::registered($name) )  
-      {  
+      try{
+         if (!static::registered($name)) {
+            throw new Phxexception('没有注册过这个类：' . $name); 
+         }
          $name = static::$registry[$name];  
          return $name();  
-      } catch(Phxexception $e) {
-         throw new Phxexception('没有注册这个类！');  
-      }
-      
+      } catch (Phxexception $e) {
+         echo $e->getMsg();
+      }      
    }  
    
    // 检查该类是否已注册

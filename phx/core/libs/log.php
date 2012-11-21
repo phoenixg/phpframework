@@ -1,4 +1,4 @@
-<?php namespace Phx;
+<?php //namespace Phx;
 //TODO
 class Log {
 
