@@ -2,7 +2,7 @@
 /**
  * Phx - A Micro PHP Framework For Beginners
  *
- * @author   黄峰 <gopher.huang@gmail.com>
+ * @author   PHOENIX <gopher.huang@gmail.com>
  * @link     https://github.com/phoenixg/phpframework
  */
 
@@ -76,7 +76,7 @@ set_exception_handler(function ($e) {
  *      throw new Phxexception("异常信息");
  *  } catch(Phxexception $e) {
  *      echo $e->getMsg();
- *   }
+ *  }
  */
 class Phxexception extends Exception
 {
