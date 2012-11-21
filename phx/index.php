@@ -103,15 +103,15 @@ class Phxexception extends Exception
  * 先写好IoC机制，然后就可以加载类了，然后就可以写log类了（用IoC加载Log等类）
  */
 require('./core/libs/ioc.php');
-
-IoC::register('photo', function() {  
-   $photo = new Photo;  
-   $photo->setDB('...');  
-   $photo->setConfig('...');  
+require('./core/libs/log.php');
+IoC::register('log', function() {  
+   $photo = new Log;  
+   //$photo->setDB('...');  
+   //$photo->setConfig('...');  
    return $photo;  
 });  
 // Fetch new photo instance with dependencies set  
-//$photo = IoC::resolve('photo');  
+$log = IoC::resolve('photo');  
 
 
 
