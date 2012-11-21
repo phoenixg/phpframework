@@ -119,9 +119,13 @@ var_dump($log);
 $log = IoC::resolve('log'); 
 var_dump($log);
 
-
-
-
+IoC::singleton('log', function(){
+   $log = new Log;  
+   //$log->setDB('...');  
+   //$log->setConfig('...');  
+   return $log; 
+});
+$log = IoC::resolve('log');  
 
 
 /*

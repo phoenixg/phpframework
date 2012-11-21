@@ -1,7 +1,8 @@
 <?php
-//TODO
+//TODO: singleton
 class IoC {  
    protected static $registry = array();  
+   public static $singletons = array();
    
    // 注册一个类
    public static function register($name, Closure $resolve)  
