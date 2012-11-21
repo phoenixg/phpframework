@@ -24,37 +24,37 @@ set_error_handler(function ($errorNo, $errMsg, $errFilePath, $errLine){
 });
 
 
-// set exception handler
-// 使用 throw new Exception('异常信息');
-/*
+// set default exception handler( for handling exceptions that are not caught by try...catch... )
+// for instance, you could setup an exception_handler that logs all of the exceptions to file
+// 使用 throw new Exception('异常信息') 手动触发该异常处理
 set_exception_handler(function ($e) {
-    echo "出现异常：" , $e->getMessage(), "\n";
+    echo "记录异常行号：" . $e->getLine() . ' 记录异常信息：' . $e->getMessage(), "\n";
 });
 
-set_exception_handler is for handling exceptions that are not caught. (try { } catch() {}
-for instance, you could setup an exception_handler that logs all of the exceptions to file
-
+// set custom exception handler( for try...catch...)
+/*
+    try {
+        throw new Phxexception("异常信息");
+    } catch(Phxexception $e) {
+        echo $e->getMsg();
+    }
 */
-//require('./core/libs/phxexception.php');
-
 class Phxexception extends Exception
 {
-    public function __construct($message, $code = 0, Exception $previous = null) {
-        parent::__construct($message, $code, $previous);
+    public function __construct($message) {
+        parent::__construct($message);
     }
 
+    //定制的异常信息内容
     public function getMsg()
     {
-        $message = $this->getLine() . $this->getMessage();
+        $message = '异常抛出的行号：' . $this->getLine() . '  异常信息：' . $this->getMessage();
         return $message;
     }
 }
 
-try {
-    throw new Phxexception("异常信息");
-} catch(Phxexception $e) {
-    echo $e->getMsg();
-}
+
+
 
 
 
