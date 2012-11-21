@@ -1,18 +1,48 @@
 <?php
-// set timzone
+/**
+ * Phx - A Micro PHP Framework For Beginners
+ *
+ * @author   黄峰 <gopher.huang@gmail.com>
+ * @link     https://github.com/phoenixg/phpframework
+ */
+
+
+/*
+ *---------------------------------------------------------------
+ * SET TIMEZONE
+ *---------------------------------------------------------------
+ */
 date_default_timezone_set('Asia/Shanghai');
 
-// include dBug class
+/*
+ *---------------------------------------------------------------
+ * INCLUDE dBug
+ *---------------------------------------------------------------
+ */
 include('./core/debug/dBug.php');
 
+/*
+ *---------------------------------------------------------------
+ * INCLUDE ALL CONSTANTS WE NEED
+ *---------------------------------------------------------------
+ */
 require('constants.php');
 
-// set error reporting level
+/*
+ *---------------------------------------------------------------
+ * SET ERROR REPORTING LEVEL TO ALL
+ *---------------------------------------------------------------
+ */
 error_reporting(E_ALL);
 
-// set error handler
-// 全部预定义的Error常量对应的数值（即$errorNo）见：http://php.net/manual/en/errorfunc.constants.php
-// error发生时自动触发，或手动触发：trigger_error("发生了一个错误")
+/*
+ *---------------------------------------------------------------
+ * SET ERROR HANDLER
+ *---------------------------------------------------------------
+ * 
+ * 全部预定义的Error常量对应的数值（即$errorNo）见：http://php.net/manual/en/errorfunc.constants.php
+ * error发生时自动触发，或手动触发：trigger_error("发生了一个错误")
+ */
 set_error_handler(function ($errorNo, $errMsg, $errFilePath, $errLine){ 
     echo '错误：' . $errorNo . '<br />';
     echo '信息：' . $errMsg . '<br />';
@@ -24,21 +54,30 @@ set_error_handler(function ($errorNo, $errMsg, $errFilePath, $errLine){
 });
 
 
-// set default exception handler( for handling exceptions that are not caught by try...catch... )
-// for instance, you could setup an exception_handler that logs all of the exceptions to file
-// 使用 throw new Exception('异常信息') 手动触发该异常处理
+/*
+ *---------------------------------------------------------------
+ * SET DEFAULT EXCEPTION HANDLER
+ *---------------------------------------------------------------
+ * 
+ * For handling exceptions that are not caught by try...catch...
+ * For instance, you could setup an exception_handler that logs all of the exceptions to file
+ * 使用 throw new Exception('异常信息') 手动触发该异常处理
+ */
 set_exception_handler(function ($e) {
     echo "记录异常行号：" . $e->getLine() . ' 记录异常信息：' . $e->getMessage(), "\n";
 });
 
-// set custom exception handler( for try...catch...)
 /*
-    try {
-        throw new Phxexception("异常信息");
-    } catch(Phxexception $e) {
-        echo $e->getMsg();
-    }
-*/
+ *---------------------------------------------------------------
+ * SET CUSTOM EXCEPTION HANDLER FOR TRY...CATCH...
+ *---------------------------------------------------------------
+ * 
+ *  try {
+ *      throw new Phxexception("异常信息");
+ *  } catch(Phxexception $e) {
+ *      echo $e->getMsg();
+ *   }
+ */
 class Phxexception extends Exception
 {
     public function __construct($message) {
@@ -53,16 +92,13 @@ class Phxexception extends Exception
     }
 }
 
-
-
-
-
-
-
-// load configuration files
+/*
+ *---------------------------------------------------------------
+ * LOAD CONFIGURATION FILES & RETRIEVE CONFIGURATION ARRAY
+ *---------------------------------------------------------------
+ */
 $config_files = glob(PATH_APP . 'config' . DS . '*' . EXT);
 
-// retrieve configuration array
 $config = array();
 foreach ($config_files as $config_file) {
     $key = substr(strrchr($config_file, DS), 1, -strlen(EXT));
@@ -70,11 +106,14 @@ foreach ($config_files as $config_file) {
     unset($key);
     unset($config_file);
 }
+
 unset($config_files);
 
-
-
-// load config class, intitialize configuration mechanism
+/*
+ *---------------------------------------------------------------
+ * LOAD CONFIG CLASS & INITIALIZE CONFIGURATION MECHANISM
+ *---------------------------------------------------------------
+ */
 include(PATH_CORE_LIBS . 'config.php');
 $CFG = new Phx\Config($config);
 unset($config);

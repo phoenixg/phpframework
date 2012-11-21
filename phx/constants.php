@@ -14,4 +14,5 @@ define('PATH_CORE_HANDLERS', PATH_BASE . 'core' . DS . 'handlers' . DS);
 // define paths of files
 define('EXT', '.php');
 define('FILE_LOG_ERRORS', PATH_LOGS . 'errors.log');
+define('FILE_LOG_EXCEPTIONS', PATH_LOGS . 'exceptions.log');
 define('FILE_BASE', PATH_BASE . 'index' . EXT);
