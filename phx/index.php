@@ -44,12 +44,8 @@ error_reporting(E_ALL);
  * error发生时自动触发，或手动触发：trigger_error("发生了一个错误")
  */
 set_error_handler(function ($errorNo, $errMsg, $errFilePath, $errLine){ 
-    echo '错误：' . $errorNo . '<br />';
-    echo '信息：' . $errMsg . '<br />';
-    echo '行号：' . $errLine . '<br />';
-    echo '位置：' . $errFilePath . '<br />';
-
-    $logInfo = '[' . date('Y-m-d H:i:s') . ']' . ' ' . $errorNo . ' ' . $errMsg . ' On Line:' . $errLine . ' ' . $errFilePath . "\n";
+    $logInfo = '['.date('Y-m-d H:i:s').'] Error: '.$errMsg.', on line: '.$errLine.', in file: '.$errFilePath.EOL;
+    echo $logInfo;
     error_log($logInfo, 3, FILE_LOG_ERRORS);
 });
 
@@ -63,9 +59,10 @@ set_error_handler(function ($errorNo, $errMsg, $errFilePath, $errLine){
  * 使用 throw new Exception('异常信息') 手动触发该异常处理
  */
 set_exception_handler(function ($e) {
-    $logInfo = "[".date("Y-m-d H:i:s")."] 异常行号：" . $e->getLine() . ' 异常文件：' . $e->getFile() . ' 异常信息：' . $e->getMessage() . "\n";
+    $logInfo = '['.date("Y-m-d H:i:s").'] Exception on line: '.$e->getLine().', in file: '.$e->getFile()
+               .', with message: '.$e->getMessage().EOL;
     echo $logInfo;
-    error_log($logInfo, 3, FILE_LOG_EXCEPTIONS);
+    error_log($logInfo, 3, FILE_LOG_ERRORS);
 });
 
 /*
@@ -85,18 +82,14 @@ class Phxexception extends Exception
         parent::__construct($message);
     }
 
-    //定制的异常信息内容
     public function getMsg()
     {
-        //TODO：添加时间
-        error_log("*\n", 3, FILE_LOG_EXCEPTIONS);
-        $message = '异常抛出的行号：' . $this->getLine() . 
-                   ' 异常文件：' . $this->getFile() .
-                   ' 异常信息：' . $this->getMessage();
-        return $message;
+        $logInfo = '['.date("Y-m-d H:i:s").'] Custom Exception on line: '.$this->getLine().', in file: '.$this->getFile()
+                   .', with message: '.$this->getMessage().EOL;
+        error_log($logInfo, 3, FILE_LOG_ERRORS);
+        return $logInfo;
     }
 }
-
 
 /*
  *---------------------------------------------------------------
