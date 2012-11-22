@@ -107,6 +107,7 @@ class Phxexception extends Exception
  */
 require('./core/libs/ioc.php');
 require('./core/libs/log.php');
+/*
 IoC::register('log', function() {  
    $log = new Log;  
    //$log->setDB('...');  
@@ -118,7 +119,7 @@ $log = IoC::resolve('log');
 var_dump($log);
 $log = IoC::resolve('log'); 
 var_dump($log);
-
+*/
 IoC::singleton('log', function(){
    $log = new Log;  
    //$log->setDB('...');  
@@ -126,7 +127,9 @@ IoC::singleton('log', function(){
    return $log; 
 });
 $log = IoC::resolve('log');  
-
+var_dump($log);
+$log = IoC::resolve('log'); 
+var_dump($log);
 
 /*
  *---------------------------------------------------------------
