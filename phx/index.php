@@ -105,18 +105,16 @@ class Phxexception extends Exception
  * 先写好IoC机制，然后就可以加载类了，然后就可以写log类了（用IoC加载Log等类）
  * Add your self-defined IoC class in ioc.php file
  */
-require('./core/libs/ioc.php');
-require('./core/libs/log.php');
+$lib_files = glob(PATH_CORE_LIBS . '*' . EXT);
+foreach ($lib_files as $file) {
+    require $file;
+}
 IoC::register('log', function()
 {
-    //do some settings 
-    //return Log::getInstance();
+    return Log::getInstance();
 });
 
-$log = IoC::resolve('log'); 
-var_dump($log);
-$log = IoC::resolve('log'); 
-var_dump($log);
+$LOG = IoC::resolve('log'); 
 
 /*
  *---------------------------------------------------------------
@@ -140,7 +138,6 @@ unset($config_files);
  * LOAD CONFIG CLASS & INITIALIZE CONFIGURATION MECHANISM
  *---------------------------------------------------------------
  */
-include(PATH_CORE_LIBS . 'config.php');
 $CFG = new Phx\Config($config);
 unset($config);
 

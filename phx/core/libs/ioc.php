@@ -13,7 +13,7 @@ class IoC {
    {
       try{
          if (!static::registered($name)) {
-            throw new Exception('没有注册过这个类：' . $name);
+            throw new Exception('这个类：' . $name . '没有被注册过');
          }
          $name = static::$registry[$name];
          return $name();
