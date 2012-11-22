@@ -93,25 +93,17 @@ class Phxexception extends Exception
 
 /*
  *---------------------------------------------------------------
- * IoC CONTAINER
+ * INCLUDE ALL CORE FILES
  *---------------------------------------------------------------
- * 先写好IoC机制，然后就可以加载类了，然后就可以写log类了（用IoC加载Log等类）
- * Add your self-defined IoC class in ioc.php file
  */
 $lib_files = glob(PATH_CORE_LIBS . '*' . EXT);
 foreach ($lib_files as $file) {
     require $file;
 }
-IoC::register('log', function()
-{
-    return Log::getInstance();
-});
-
-$LOG = IoC::resolve('log'); 
 
 /*
  *---------------------------------------------------------------
- * LOAD CONFIGURATION FILES & RETRIEVE CONFIGURATION ARRAY
+ * RETRIEVE CONFIGURATION ARRAY FROM CONFIGURATION FILES
  *---------------------------------------------------------------
  */
 $config_files = glob(PATH_APP . 'config' . DS . '*' . EXT);
@@ -128,15 +120,29 @@ unset($config_files);
 
 /*
  *---------------------------------------------------------------
- * LOAD CONFIG CLASS & INITIALIZE CONFIGURATION MECHANISM
+ * INITIALIZE CONFIG CLASS
  *---------------------------------------------------------------
  */
 $CFG = new Phx\Config($config);
 unset($config);
-
-
-
 //echo $CFG::get('application.aaa.ddd.eee');
+
+/*
+ *---------------------------------------------------------------
+ * INCLUDE IoC CONTAINER
+ *---------------------------------------------------------------
+ * Append your own IoC class in ioc.php file
+ */
+require('ioc'.EXT);
+
+/*
+ *---------------------------------------------------------------
+ * RESOLVE ALL CLASSES
+ *---------------------------------------------------------------
+ */
+$LOG = IoC::resolve('log');
+
+
 
 /*
 new dBug($GLOBALS);
