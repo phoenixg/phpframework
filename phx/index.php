@@ -107,26 +107,13 @@ class Phxexception extends Exception
  */
 require('./core/libs/ioc.php');
 require('./core/libs/log.php');
-/*
-IoC::register('log', function() {  
-   $log = new Log;  
-   //$log->setDB('...');  
-   //$log->setConfig('...');  
-   return $log;  
-});  
-// Fetch new log instance with dependencies set  
-$log = IoC::resolve('log');  
-var_dump($log);
-$log = IoC::resolve('log'); 
-var_dump($log);
-*/
-IoC::singleton('log', function(){
-   $log = new Log;  
-   //$log->setDB('...');  
-   //$log->setConfig('...');  
-   return $log; 
+IoC::register('log', function()
+{
+    //do some settings 
+    //return Log::getInstance();
 });
-$log = IoC::resolve('log');  
+
+$log = IoC::resolve('log'); 
 var_dump($log);
 $log = IoC::resolve('log'); 
 var_dump($log);
