@@ -99,7 +99,9 @@ class Phxexception extends Exception
 $lib_files = glob(PATH_CORE_LIBS . '*' . EXT);
 foreach ($lib_files as $file) {
     require $file;
+    unset($file);
 }
+unset ($lib_files);
 
 /*
  *---------------------------------------------------------------
@@ -107,7 +109,6 @@ foreach ($lib_files as $file) {
  *---------------------------------------------------------------
  */
 $config_files = glob(PATH_APP . 'config' . DS . '*' . EXT);
-
 $config = array();
 foreach ($config_files as $config_file) {
     $key = substr(strrchr($config_file, DS), 1, -strlen(EXT));
@@ -115,17 +116,16 @@ foreach ($config_files as $config_file) {
     unset($key);
     unset($config_file);
 }
-
 unset($config_files);
 
 /*
  *---------------------------------------------------------------
  * INITIALIZE CONFIG CLASS
  *---------------------------------------------------------------
+ * Retrieve config item via: $CFG::get('application.aaa.ddd.eee');
  */
 $CFG = new Phx\Config($config);
 unset($config);
-//echo $CFG::get('application.aaa.ddd.eee');
 
 /*
  *---------------------------------------------------------------
@@ -143,10 +143,10 @@ require('ioc'.EXT);
 $LOG = IoC::resolve('log');
 
 
-
 /*
 new dBug($GLOBALS);
 
 $constants = get_defined_constants(true);
 new dBug($constants['user']);
+
 */
