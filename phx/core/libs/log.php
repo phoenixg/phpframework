@@ -1,48 +1,30 @@
-<?php //namespace Phx;
-//TODO
-class Log {
+<?php
 
-    private static $instance; 
-  
-    private function __construct()  
-    {  
-    }  
-  
-    public static function getInstance() 
-    {  
-        if(!self::$instance)  
-        {  
-            self::$instance = new Log();  
-        }  
-        return self::$instance;
-    }  
+/**
+ *
+ * Log::info('test')
+ *
+ */
+class Log {  
+    private function __construct() {} 
 
-	public static function exception($e)
+	// write a log
+	protected static function write($type, $message)
 	{
-		static::write('exception', static::exception_line($e));
-	}
-
-	protected static function exception_line($e)
-	{
-		return $e->getMessage().' in '.$e->getFile().' on line '.$e->getLine();
-	}
-
-	public static function write($type, $message)
-	{
-
 		$message = static::format($type, $message);
 		echo $message;
-		//File::append(path('storage').'logs/'.date('Y-m-d').'.log', $message);
+		file_put_contents(FILE_LOG_ERRORS, $message, LOCK_EX | FILE_APPEND);
 	}
 
+	// format a log message
 	protected static function format($type, $message)
 	{
-		return date('Y-m-d H:i:s').' '.strtoupper($type)." - {$message}".PHP_EOL;
+		return '['.date('Y-m-d H:i:s').'] '.strtoupper($type)." - {$message}".PHP_EOL;
 	}
-
+    
+    // handle non-existed static method
 	public static function __callStatic($method, $parameters)
 	{
 		static::write($method, $parameters[0]);
 	}
-
 }

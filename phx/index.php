@@ -139,14 +139,17 @@ require('ioc'.EXT);
  *---------------------------------------------------------------
  * RESOLVE ALL CLASSES
  *---------------------------------------------------------------
+ * $test = IoC::resolve('classname');
  */
-$LOG = IoC::resolve('log');
 
 
-/*
+
+
 new dBug($GLOBALS);
 
+/*
 $constants = get_defined_constants(true);
 new dBug($constants['user']);
 
 */
+
