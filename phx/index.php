@@ -19,14 +19,14 @@ date_default_timezone_set('Asia/Shanghai');
  * INCLUDE dBug
  *---------------------------------------------------------------
  */
-include('./core/debug/dBug.php');
+include './core/debug/dBug.php';
 
 /*
  *---------------------------------------------------------------
  * INCLUDE ALL CONSTANTS WE NEED
  *---------------------------------------------------------------
  */
-require('constants.php');
+require 'constants.php';
 
 /*
  *---------------------------------------------------------------
@@ -112,7 +112,7 @@ $config_files = glob(PATH_APP . 'config' . DS . '*' . EXT);
 $config = array();
 foreach ($config_files as $config_file) {
     $key = substr(strrchr($config_file, DS), 1, -strlen(EXT));
-    $config[$key] = include($config_file);
+    $config[$key] = include $config_file;
     unset($key);
     unset($config_file);
 }
@@ -133,7 +133,7 @@ unset($config);
  *---------------------------------------------------------------
  * Append your own IoC class in ioc.php file
  */
-require('ioc'.EXT);
+require 'ioc'.EXT;
 
 /*
  *---------------------------------------------------------------
