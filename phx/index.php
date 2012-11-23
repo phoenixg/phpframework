@@ -141,15 +141,27 @@ require 'ioc'.EXT;
  *---------------------------------------------------------------
  * $test = IoC::resolve('classname');
  */
-
-
-
-
-new dBug($GLOBALS);
+//$test = IoC::resolve('classname');
 
 /*
-$constants = get_defined_constants(true);
-new dBug($constants['user']);
+ *---------------------------------------------------------------
+ * ROUTE URI TO CONTROLLER/METHOD
+ *---------------------------------------------------------------
+ */
+require PATH_CORE.'phx'.EXT;
 
-*/
+
+
+
+
+
+/*
+ *---------------------------------------------------------------
+ * SHOW DEBUG INFORMATION
+ *---------------------------------------------------------------
+ */
+//new dBug($GLOBALS);
+
+//$constants = get_defined_constants(true);
+//new dBug($constants['user']);
 
