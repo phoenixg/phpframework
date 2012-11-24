@@ -1,0 +1,12 @@
+Options +FollowSymLinks +ExecCGI
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  #如果文件存在，就直接访问文件，不进行下面的Rewrite.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  #如果目录存在就直接访问目录不进行Rewrite
+  RewriteCond %{REQUEST_FILENAME} !-d
+  #如果是这些后缀的文件，就直接访问文件，不进行Rewrite
+  RewriteCond %{REQUEST_URI} !^.*(\.css|\.js|\.gif|\.png|\.jpg|\.jpeg|\.txt|\.flv|\.swf|\.xml)$
+  #其它文件rewrite到index.php用于添加新的查询参数
+  RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>

@@ -1,0 +1,531 @@
+body {
+	font-size: 12px; font-family:  Tahoma, Verdana, arial, Helvetica, sans-serif;
+
+}
+input {
+	font-size: 12px; font-family:  Tahoma, Verdana, arial, Helvetica, sans-serif;
+}
+body {
+	background: #fff; margin: 0px; color: #333333;
+}
+
+form,p,ol,ul,li,dl,dt,dd,h1,h2,h3,h4,td,tr,th{
+	margin: 0px; padding: 0px;
+}
+ul,ol{
+	list-style-type: none;
+}
+img,table {
+	border: 0px;
+}
+a {
+	color: #00c; text-decoration: underline; outline: none;
+}
+table {
+	table-layout: fixed; border-collapse: collapse;
+}
+th {
+	font-weight: bold;
+}
+input {
+	outline: none;
+}
+
+body {
+	background:#FFFFFF;/*将背景设置为白色*/
+}
+#contain {
+	margin: 0px auto;
+	width: 988px;
+	overflow:hidden;
+}
+#hd {
+	 height: auto;
+}
+#hd .hdbox {
+	height:45px;
+	margin-top:15px;
+	padding-left:10px;
+	padding-right:10px;
+	/*此处是最上层DIV（包含右上角部分）的CSS形式*/
+	overflow:hidden;
+        float:left
+}
+#bd {
+	margin-top:1px;
+	width: 988px;
+	overflow:hidden;
+}
+#main {
+	float: left; padding-bottom: 5px; width: 777px;
+}
+#main .mainbox {
+	margin-top:8px;  /*d当此值变大时，该层与主导航条的距离就会变大*/
+	float: left;
+	width: 777px;
+	background-color: #E2F2FC/*#DEF0F8;  */
+}
+
+#side {
+	margin-top:8px;
+	float: right;
+	width: 200px;
+}
+
+#side .topside{
+	height:21px;
+	background:url(../images/topside.gif) no-repeat left top;
+	font-size: 13px;
+	color: #213a49;
+	font-weight: bold;
+	padding-top:6px;
+	padding-left:14px;
+}
+
+.topside h{
+	font-size: 12px;
+	color: #213a49;
+	font-weight: bold;
+}
+
+#side .sidebox {
+	background-color:#ECF4FD;
+}
+
+
+#side .bottomside{
+	height:1px;
+	
+}
+
+#fd {
+	margin-top: 10px; width: 988px; color: #808080; text-align: center;overflow:hidden;
+}
+.clear {
+	clear: both; overflow: hidden; height: 0px;
+}
+.tr {
+	text-align: right;
+}
+a {
+	color: #4D7BC1;
+}
+
+a:hover {
+    color: #999999;
+}
+.top10 {
+	margin-top: 10px;
+}
+.l {
+	float: left;
+}
+.r {
+	float: right;
+}
+#logo{
+	width: 180px;
+	position: relative;
+	height:45px;
+}
+#logo span{
+	font-size: 28px;
+}
+
+/*主页的格式设置*/
+.nav {
+	background: url(../images/vertical.gif) repeat-x 0px -36px; height: 36px;
+}
+.nav a{
+	text-decoration: none;/*主导航条的文字不用下划线*/
+}
+.nav .navLeftBg{
+	background:url(../images/vertical.gif) no-repeat 0 0; height:36px;
+}
+.nav .navRightBg{
+	background:url(../images/icons.gif) no-repeat right -146px; height:36px;
+}
+
+.nav .mainNav {
+	position: absolute;
+	text-align:right;
+	padding:0 5px ;
+	font-size:14px;
+}
+
+.nav .mainNav a:link {
+	display: inline-block; font-weight: bold; font-size: 14px; width: 90px; color: #ffffff; line-height: 36px; height: 36px; text-align: center;
+}
+.nav .mainNav a:visited {
+	display: inline-block; font-weight: bold; font-size: 14px;  width: 90px; color: #ffffff; line-height: 36px; height: 36px; text-align: center;
+}
+.nav .mainNav a:active {
+	display: inline-block; font-weight: bold; font-size: 14px; width: 90px; color: #ffffff; line-height: 36px; height: 36px; text-align: center;
+}
+.nav .mainNav a:hover {
+	text-decoration: none;
+}
+.nav .mainNav a.actived:link {
+	background: url(../images/icons.gif) no-repeat 0px -27px; color: #000000;
+}
+
+.nav .mainNav a.actived:visited {
+	background: url(../images/icons.gif) no-repeat 0px -27px; color: #000000;
+}
+.nav .mainNav a.actived:hover {
+	background: url(../images/icons.gif) no-repeat 0px -27px; color: #000000;
+}
+.nav .mainNav a.actived:active {
+	background: url(../images/icons.gif) no-repeat 0px -27px; color: #000000;
+}
+
+.topNav {
+	color: rgb(102, 102, 102);
+	text-align: right;
+	margin-top:-45px;
+}
+.topNav a {
+	margin: 0px 10px;
+}
+
+#maint {
+	padding: 10px; font-size: 12px; line-height: 20px;
+}
+
+
+
+#maint h2 {
+	margin-top: 15px; font-size: 14px; padding-bottom: 5px; color: #477db3; border-bottom: #e5e5e5 1px solid; ZOOM: 1;
+}
+
+#maint .keybox  {
+	background: #fff; overflow: hidden; line-height: 23px; height: auto;
+	padding:10px 18px;
+}
+
+#rules{
+	text-align:right;
+}
+#rules a{
+	cursor:pointer;
+	text-decoration:none;
+	color: #4D7BC1;
+}
+
+#maint .keybox p {
+	margin: 10px 0px; line-height: 2em;
+}
+#maint .keybox .tarea {
+	border: #bbbbbb 1px solid; padding: 5px; float: left;  font: 13px consolas, "monaco", "courier new", monospace; overflow: auto; width: 590px; color: #007000; word-break: break-all; background-color: #fafafa;
+}
+
+#maint .keybox code {
+	font-size: 14px;
+	color: #007100;/* #72B672;*/
+}
+
+#maint .keybox code a:link{
+	color: #4D7BC1;/*#6B93C7;*/
+}
+
+#maint .keybox table {
+	table-layout: auto; line-height: 1.5; border-collapse: collapse; border-spacing: 0;
+}
+#maint .keybox th {
+	WHITE-SPaCE: nowrap
+}
+#maint .keybox h3 {
+	padding-bottom: 0.2em; border-bottom: #e5e5e5 1px solid;color: #4D7BC1;margin-top: 20px; font-size: 14px;
+}
+#maint .keybox H3 a {
+	font-size: 14px; color: #4D7BC1; text-decoration: none;
+}
+#maint .keybox H4 {
+	padding-right: 0px; padding-left: 0px; padding-bottom: 8px; padding-top: 10px;
+}
+#maint .keybox H4 a{
+	font-size: 14px; color: #333; text-decoration: none;
+}
+#maint .keybox .doc_table {
+	font-size: 13px; text-align: left;
+}
+#maint .keybox .doc_table th {
+	border: #B3CBD9 1px solid; padding:6px 12px; font-size: 13px;
+}
+#maint .keybox .doc_table td {
+	border: #B3CBD9 1px solid; padding:6px 12px; font-size: 13px;
+}
+#maint .keybox .doc_table th {
+	background-color: #DaEDF8;
+}
+#bottomNav {
+	padding-right: 10px; right: 0px; margin-bottom: 10px; overflow: visible; width: 100%; bottom: 0px; position: fixed; text-align: right; _position: absolute;
+}
+
+#maint .warning {
+	margin-top: 5px; font-size: 12px;
+}
+#maint .warning b {
+	color: #e10601;
+}
+#maint .indent p {
+	margin: 14px 0px; text-indent: 2em;
+}
+#maint .bkey {
+	border: #bbbbbb 1px solid; padding:5px; float: left; overflow-x: hidden; font: 13px consolas, "monaco", "courier new", monospace; width: 590px; color: #007000;background-color: #fafafa; word-wrap: break-word;
+}
+
+.tree{
+	padding-top:3px;
+	padding-right:4px;
+}
+
+.sidebox {
+	padding-left:14px;
+	padding-right:14px;
+	margin-top:-16px;
+}
+
+/*设置所有右侧导航条中的连接初始时都没有下划线,鼠标滑到连接上时才有下划线出现*/
+.sidebox a{text-decoration:none;}
+.sidebox a:hover{text-decoration:underline;}
+
+.sidebox .list01 {
+	font-size: 12px; color:#4D7BC1;
+	padding-bottom:1px;
+}
+
+.sidebox .list01 h2 {
+	font-size: 12px;color: #4D7BC1; font-weight: bold; padding-top:10px;
+}
+.sidebox .list01 h3 {
+	font-size: 12px;color: #4D7BC1; font-weight: bold;
+}
+
+.sidebox .list01 div {
+	margin-top:16px;margin-bottom:16px;
+}
+.sidebox .list01 li {
+	margin-bottom: 17px; padding-left:11px;
+}
+
+
+.sidebox .list02 {
+	font-size: 12px;
+	color:#4D7BC1;
+	padding-bottom:1px;
+}
+.sidebox .list02 h2 {
+	font-size: 12px;
+	color: #4D7BC1;
+	cursor:pointer;
+	padding-top:10px;
+}
+.sidebox .list02 h3 {
+	font-size: 12px;
+	color: #4D7BC1;
+	cursor:pointer;/*此处设置的是参考手册右侧导航条中第一行的字体颜色与大小*/
+}
+
+.sidebox .list02 img {
+	margin-left: -8px;
+	margin-right: 3.5px;
+}
+
+.sidebox .list02 div {
+	margin-top:16px;
+	margin-bottom:16px;
+}
+
+.sidebox .list01 {
+	font-size: 12px; color:#4D7BC1;
+	padding-bottom:1px;
+}
+
+
+.sidebox .list03 {
+	font-size: 12px; color:#4D7BC1;
+	padding-bottom:1px;
+}
+.sidebox .list03 h2 {
+	font-size: 12px;color: #4D7BC1; font-weight: bold;  cursor:pointer; padding-top:10px;
+}
+.sidebox .list03 h3 {
+	font-size: 12px;color: #4D7BC1 ;  font-weight: bold;cursor:pointer;
+}
+.sidebox .list03 img {
+	margin-left: -8px;
+	margin-right: 3.5px;
+}
+
+.sidebox .list03 h4 {
+	font-size: 12px;color: #4D7BC1 ; cursor:pointer;
+}
+.sidebox .list03 h5 {
+	font-size: 12px;color: #4D7BC1 ; cursor:pointer;
+}
+.sidebox .list03 div {
+	margin-top:16px;margin-bottom:16px;
+}
+.sidebox .list03 li {
+	margin-bottom: 17px; padding-left:11px;
+}
+.sidebox .list03 p {
+	margin-top:5px;
+	line-height:1.5em;
+}
+
+.search .input01 {
+	border: #c8c8c8 1px solid; padding:2px 3px 0px; width: 147px; color: #666; line-height: 20px;  height: 21px;
+}
+.search .bt01 {
+	border: 0px; font-weight: bold; width: 52px; cursor: pointer; color: #477db3; height: 25px; background-color: #cee0f3;
+}
+
+#sform li {
+	margin-top: 10px; padding-left: 25px;
+}
+#sform li.f {
+	padding-left: 0px;
+}
+#sform .sdis {
+	float: left; width: 25px;
+}
+
+#popup_container {
+	font-size: 12px;
+	min-width: 350px;
+	_width:320px;
+	max-width: 600px;
+	background: #fff;
+	border:1px solid #6B97C1;
+}
+#popup_title {
+	font-size: 13px;height:28px;background:#8BACCF url(../images/pupop_bg.png) repeat-x;
+	font-weight:bold;line-height:1.9em;margin:0;padding:0 0 0 8px;text-align:left;color:#FFFFFF;overflow:hidden;
+}
+#popup_close{
+	position:absolute;
+	right:0;top:0;
+	background:url(../images/pupop_bg.png) no-repeat 0 -30px;
+	float:right;width:34px;height:19px;margin-right:5px;line-height:100px;cursor:pointer;
+}
+#popup_close:hover{background:url(../images/pupop_bg.png) no-repeat -37px -30px;}
+#popup_content{padding:12px;margin:0px;min-height:40px;}
+pre {
+	-moz-border-radius:5px 5px 5px 5px;
+	background:none repeat scroll 0 0 #F2F2F2;
+	color:#AF2D00;
+	font-size:12px;
+	padding:1em;
+}
+
+#note{
+        -moz-border-radius:5px 5px 5px 5px;
+        background: #E2F2FC url(../images/note.png) no-repeat ;
+        background-position:1px 0;
+        color:#7C5522;
+        font-size:12px;
+        padding:1em;;
+        
+}
+#note span{
+        padding-left:40px;
+}
+
+UL {
+	LIST-STYLE-TYPE: none;
+	padding:0px;
+	margin:0px;
+}
+LI {
+	FONT-SIZE: 12px;
+	COLOR: #333;
+	LINE-HEIGHT: 1.5em;
+	FONT-FAMILY: "宋体", Arial, Verdana;
+}
+.hide {
+	DISPLAY: none
+}
+.topmenu{
+  float:left;
+  margin-top:32px;
+}
+.bottommenu{
+  clear:both;
+}
+#mainmenu_top UL LI .menuhover {
+	BACKGROUND: url(../images/mainmenu_s.gif) no-repeat;
+	COLOR: #fff;
+}
+#mainmenu_top UL LI A {
+	MARGIN-TOP: 2px;
+	CURSOR: pointer;
+	PADDING-TOP: 8px;
+	HEIGHT: 20px;
+	text-decoration: none;
+}
+#mainmenu_top {
+	width:100%;
+	HEIGHT: 28px;
+	display:block;
+	overflow:hidden;
+}
+#mainmenu_top UL LI {FLOAT: left}
+#mainmenu_top UL LI A {
+ 	WIDTH: 81px;
+	height:auto;
+	DISPLAY: block;
+	COLOR: #666666;
+	TEXT-ALIGN: center;
+	FONT-WEIGHT: bold;
+	BACKGROUND: url(../images/mainmenu_h.gif) no-repeat;
+}
+#mainmenu_bottom {
+	width:100%;
+	height:32px;
+	line-height:32px;
+	display:block;
+	overflow:hidden;
+	BACKGROUND: url(../images/mainmenu_bg.jpg) repeat-x
+}
+#mainmenu_bottom .mainmenu_rbg {
+	HEIGHT: 32px;
+	COLOR: #fff;
+	MARGIN-LEFT: 0px;
+	PADDING: 0px 0px 0px 5px;
+	BACKGROUND: url(../images/mainmenu_r.gif) no-repeat right 50%;
+}
+#mainmenu_bottom UL {}
+#mainmenu_bottom UL LI {
+	PADDING-LEFT: 8px;
+	FLOAT: left;
+	MARGIN-LEFT: 7px;
+	HEIGHT: 32px;
+}
+#mainmenu_bottom UL LI.se {
+	FLOAT: left;
+	MARGIN-LEFT: 7px;
+	HEIGHT: 32px;
+	PADDING-LEFT: 8px;
+	BACKGROUND: url(../images/menulink_bg_l.gif) no-repeat;
+}
+#mainmenu_bottom UL LI A {
+	COLOR: #fff;
+	LINE-HEIGHT: 32px;
+	PADDING-RIGHT: 18px;
+	DISPLAY: block;
+	text-decoration: none;
+	BACKGROUND: url(../images/menulink_bg_normal.gif) no-repeat right 50%;
+}
+#mainmenu_bottom UL LI A:hover {
+	BACKGROUND: url(../images/menulink_bg_normal.gif) no-repeat right 50%;
+	color: #FFCC00;
+}
+#mainmenu_bottom UL LI A.se {
+	COLOR: #fff;
+	LINE-HEIGHT: 32px;
+	PADDING-RIGHT: 18px;
+	DISPLAY: block;
+	BACKGROUND: url(../images/menulink_bg_r.gif) no-repeat right 50%;
+}

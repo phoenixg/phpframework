@@ -1,0 +1,96 @@
+<root>
+  <head>
+    <id>tool-doc</id>
+    <title>文档显示工具</title>
+  </head>
+  <body>
+    <h3>文档使用方法</h3>
+    <p>文档的使用,我们需要在文档中新增代码或者修改等,全部在xml文件中进行.</p>
+    <p>整个xml文档的基本标签</p>
+    <note>注意下面我们说的标签没有加左右括号</note>
+    <pre>
+root    xml文档的跟标签
+head    head标签,可以理解为我们html中的head标签,id和title都写在head中.
+id      id就是我们这个xml文档的标识
+title   title很好理解就是我们这个文档的标题
+body    文档的主体部分,其他的一些扩展标签都写在body内
+    </pre>
+            <note>二级id请保持和一级id的关联性,比如一级id->Tm,二级id->Tm-db,Tm-basic.注意id的唯一性</note>
+        <p>需要用到的标签,我们的标签格式就是普通的xml双标签,注意闭合.</p>
+    <pre>
+p                段落文字,基本文字.页面上我们能看到的普通文字
+pre              要点醒目标签,可以理解为预览，页面上我们能看到的红色背景效果
+h3               提纲标题,一个小总结的效果,我们页面右边的一个导航效果.
+note             便签标签,上面看见的小标签就是.
+php              php的代码高亮标签.适用php代码的高亮处理
+js               js的代码高亮标签.适用js代码的高亮处理
+a                超链接标签,这个标签比较特殊,我们标签需要加属性 a href-"网址" /a
+table tr td      表格标签,按html格式编写即可
+list li          列表标签
+    </pre>
+
+        <h3>注意事项</h3>
+        <p>下面的注意事项希望大家能遵守,我们也是希望文档的美观和适用于新手快速上手框架.</p>
+    <pre>
+1.h3的提纲标签为了右侧的导航,希望不要加冒号和尽量减少描述.做到右侧导航尽量不会换行.
+2.需要用到大段代码的地方,尽量按照CDATA的标签,在标记CDATA下，所有的标记、实体引用都被忽略，
+  被XML处理程序一视同仁地当做字符数据看待
+3.大段代码的地方请尽量在每行代码后方或者上方加注释.
+4.id标签请做到不要重复,一级标题请例如Doc区别二级标题的Doc-name，注意一级标题和二级标题的命名方法.请勿重名!
+5.XML文件的命名请遵守doc.*.xml的规则(*为任意)
+6.现在的文档还处于开发阶段,有好的想法请提出来,文档是个庞大的工程，希望大家共同完善.
+    </pre>
+
+    <h3>关于doc的说明</h3>
+    <p>这个文档只是简单分析框架的使用流程,不过在这之前,我们先分析下我们这个文档内部(不包括框架)是如何实现的.</p>
+    <h3>查找目录中的所有xml文件</h3>
+    <php>
+    <![CDATA[$finder = new CoreFinder();//实例化CoreFinder();
+    $finder->setFormat('/doc\..*\.xml/');//定义查找文件格式；
+    $finder->setRoot(array(PROJECT_ROOT, ADDONS_ROOT));//定义查找目录；
+    $files = $finder->execute();//CoreFinder中的一个方法,返回查找文件；]]>
+    </php>
+     <h3>将xml数组中的数据转换成可用的数组：</h3>
+    <pre>实现过程主要就是simplexml_load_file这个函数</pre>
+    <php>
+    <![CDATA[$this->xmls = array();//定义$xmls空数组
+    foreach ($files as $file)//遍历$files,转化后获得数组格式的xml数据.
+    {
+      //simplexml_load_file函数把 XML 文档载入对象中,返回XML文档中的数据
+      $xml = simplexml_load_file($file);
+      $this->xmls[] = $xml;
+    }]]>
+    </php>
+    <h3>xml到html标签的转换</h3>
+    <pre>首先根据当前id显示当前页面的html</pre>
+    <php>
+    <![CDATA[foreach ($files as $file)
+    {
+      $xml = simplexml_load_file($file);//遍历,同上
+      if ($xml->head->id == $id)//xml->head->id=$id,$id=$id = $request->getGet('id');
+      {
+        $doc = new Doc;实例化Doc，Doc.class.php文件中.
+        $this->display = $doc->execute($xml);//最后就是通过Doc类中的execute($xml)方法转化成html标签.
+      }
+    }]]></php>
+    <pre>我们查看execute($xml)的具体实现过程</pre>
+    <php>
+    <![CDATA[  $html = '';
+        foreach($xml->body->children() as $child)
+        {
+          $tagName = $child->getName();
+          if (in_array($tagName, array('h3', 'p','a')))//数组中设定需要用到的标签.
+          {
+            //这些标签转换程html格式.比如h3-><h3>内容</h3>.
+            $html .= '<'.$tagName.'>'.$child.'</'.$tagName.'>';
+          }
+          else if($tagName == 'php')//不同类型或不同试用方法的标签
+          {
+            $html .= "<pre class='brush: php;'>".$child."</pre>";//这只是一个例子,实现php的语法高亮.
+          }
+        }
+        return $html;//最后返回组合后的html代码;]]>
+    </php>
+
+  </body>
+</root>

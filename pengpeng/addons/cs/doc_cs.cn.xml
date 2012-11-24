@@ -1,0 +1,12 @@
+<root>
+	<head>
+		<id>cs</id>
+		<title>功能组件(cs)</title>
+	</head>
+	<body>
+		<h3>简介</h3>
+		<p>aMvc: 一个轻量级的MVC包</p>
+		<p>dao: 一个简单的dao访问基类</p>
+		<p>pager: 分页的功能类</p>
+	</body>
+</root>

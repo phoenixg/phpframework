@@ -1,0 +1,82 @@
+<root>
+  <head>
+    <id>nb-mvc</id>
+    <title>MVC</title>
+  </head>
+  <body>
+    <h3>MVC简介</h3>
+    <p>NB允许用户自定义自身的MVC插件，只要在APP的入口文件door.php中调用某个MVC插件就可以方便的使用。</p>
+    <php>loadApp('nb-mvc');</php>
+    
+    <h3>nb-mvc</h3>
+    <p>
+        nb-mvc是NB推荐使用的MVC插件，能够满足绝大部分的应用需求。
+    </p>
+    
+    <h3>Filter</h3>
+    <pre>
+Filter 是 nb-mvc 支持的一种链式结构，可以把业务逻辑分拆到各个 filter 中，框架中包含了两个默认的 filter：
+nbExecutionFilter：实现对 Action, Template, Layout 的解析
+nbRenderingFilter：实现对最终页面的输出</pre>
+<note>nbRenderingFilter 会对 Layout 中的 HTML 进行处理并输出 JS，CSS，Meta等信息</note>
+    <php>
+      // 在配置文件中进行如下的配置，就可以往链中添加需要的 filter
+      $config['nb-mvc/filter'] = array(
+        'nbRenderingFilter',
+        'CsDebugFilter',
+        'nbExecutionFilter',
+      );
+    </php>
+    
+    <h3>Action</h3>
+    <p>Action 是主业务逻辑的实现部分，nbAction.class.php 提供了一整套 API 作为业务逻辑的实现使用</p>
+    <note>在 Action 中注册属性，其实就是相当于给 Template 赋值模板变量</note>
+    <p>Action 文件内容举例：</p>
+    <php>
+      // 获取 $_GET $_POST 中的值
+      $id = $this->request->getPost('id');
+      $content = $this->request->getGet('content');
+      
+      // 赋值模板变量
+      $this->content = $content;
+      
+      // 调用其他方法
+      $this->checkContent($content);
+      
+      // 调用数据库查询
+      $this->users = $this->service->selectOne('*', 'Tbl_User', array('id' => $id));
+      
+      // 使用指定的 template
+      $this->setTemplate('view');
+      
+      // 使用指定的 layout
+      $this->setLayout('person');
+    </php>
+    
+    <h3>Template</h3>
+    <p>Template 提供了一个 nbWidget 的静态方法，提供对一些常用功能的支持。</p>
+    <p>includePartial(), getPartial()方法实现对一个页面片的引入</p>
+    <php>
+nbMvcWidget::getPartial('app/module/template', array('para' => 'paraValue'));
+nbMvcWidget::includePartial('app/module/template', array('para' => 'paraValue'));
+    </php>
+    <p>includeComponent(), getComponent()方法实现对一个带有逻辑部分的页面片的引入</p>
+    <php>
+nbMvcWidget::getComponent('app/module/template', array('para' => 'paraValue'))
+nbMvcWidget::includeComponent('app/module/template', array('para' => 'paraValue'))
+    </php>
+		<h3>Layout</h3>
+    <p>Layout 是一种多个 Template 对模板实现共用的实现机制，在每个 Template 解析完之后，会将解析的结果替换掉 Layout 文件中的 $content 变量。</p>
+		<p>默认的 Layout 内容如下：</p>
+    <pre>
+<![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+</head>
+<body>
+<?php echo $contents ?>
+</body>
+</html>]]>
+    </pre>
+  </body>
+</root>

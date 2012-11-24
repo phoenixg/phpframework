@@ -1,0 +1,2 @@
+<?php
+loadApp('nb-mvc');

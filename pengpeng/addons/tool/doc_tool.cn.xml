@@ -1,0 +1,11 @@
+<root>
+	<head>
+		<id>tool</id>
+		<title>工具包(tool)</title>
+	</head>
+	<body>
+		<h3>简介</h3>
+		<p>checker: 编码规范检查的一个工具</p>
+		<p>doc: 文档自动生成的一个工具</p>
+	</body>
+</root>

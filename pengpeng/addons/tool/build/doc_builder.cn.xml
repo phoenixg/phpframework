@@ -1,0 +1,97 @@
+<root>
+  <head>
+    <id>tool-builder</id>
+    <title>自动生成系统</title>
+  </head>
+  <body>
+    <note>如果要进行模板变量值的替换，需要将文件名后增加 .nbt（defalut.php.nbt）</note>
+    <h3>如何配置和使用</h3>
+    <p>非常简单，只要在配置文件中配置如下，然后访问 /tool-build.php 就可以使用：</p>
+    <php>
+$config['tool-build/item']['tm']['title'] = '腾讯外包项目';
+$config['tool-build/item']['tm']['description'] = '创建一个腾讯外包项目';
+
+// 模板文件地址
+$config['tool-build/item']['tm']['fromPath'] = array(
+  ADDONS_ROOT.'tm/build/template/',
+);
+
+// 生成到的目录地址
+$config['tool-build/item']['tm']['toPath'] = array(
+  PROJECT_ROOT.'test/',
+);
+
+// 借助表单系统实现的表单功能，可以设置相关的参数
+$config['tool-build/item']['tm']['fromPara'] = array(
+  'appid' => array(
+    'function' => array(
+      'nbFormWidget::text' => array('appid', '4005710')
+    ),
+    'title' => 'APPID',
+  ),
+  'tamsid' => array(
+    'function' => array(
+      'nbFormWidget::text' => array('tamsid')
+    ),
+    'title' => 'TAMSID',
+  ),
+  'startTime' => array(
+    'function' => array(
+      'nbFormWidget::text' => array('startTime', date('Y-m-d H:i:s'))
+    ),
+    'title' => '开始时间',
+  ),
+  'endTime' => array(
+    'function' => array(
+      'nbFormWidget::text' => array('endTime')
+    ),
+    'title' => '结束时间',
+  ),
+  'nameSpace' => array(
+    'function' => array(
+      'nbFormWidget::text' => array('nameSpace')
+    ),
+    'title' => '命名空间',
+  ),
+  'dbName' => array(
+    'function' => array(
+      'nbFormWidget::text' => array('dbName')
+    ),
+    'title' => '数据库名',
+  ),
+  'dbIP' => array(
+    'function' => array(
+      'nbFormWidget::text' => array('dbIP')
+    ),
+    'title' => '正式环境数据库IP',
+  ),
+);
+    </php>
+      
+    <h3>如何替换模板文件中的一个变量</h3>
+    <p>模板文件内容 （假设文件为 config.php.nbt ）</p>
+    <pre><![CDATA[
+[?php
+$config['minisite/nameSpace'] = '<?php echo $nameSpace ?>';
+$config['cs-dao/dbname'] = '<?php echo $dbName ?>';
+?]
+用户通过表单提交的值会替换 $nameSpace，然后将文件中的[?php修改为<?php，?]修改为?>
+    ]]></pre>
+		<h3>如何替换文件夹和文件名</h3>
+		<p>只要在配置文件中，或者模板文件夹中把需要替换的文件命名为%fileName%就会使用表单的参数替换之</p>
+		<php>
+// 生成到的目录地址
+$config['tool-build/item']['tm']['toPath'] = array(
+  PROJECT_ROOT.'%fileName%/',
+);
+$config['tool-build/item']['tm']['fromPara'] = array(
+  'fileName' => array(
+    'function' => array(
+      'nbFormWidget::text' => array('dbIP')
+    ),
+    'title' => '要替换的文件或者文件夹名称',
+  ),
+);
+</php>
+  </body>
+</root>

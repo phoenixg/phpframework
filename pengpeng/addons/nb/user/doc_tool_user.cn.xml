@@ -1,0 +1,42 @@
+<root>
+	<head>
+		<id>tool-user</id>
+		<title>权限管理系统</title>
+	</head>
+	<body>
+		<h3>权限系统的基本原理</h3>
+		<p>此权限系统可以挂接到任意系统的用户表，并通过此用户表建立权限机制</p>
+		<p>权限系统提供两张表，角色表（CS_User_Role）和权限表（CS_User_Privilege），一个角色会包含多个权限，相当于权限组的概念</p>
+		<h3>1. 挂接用户表</h3>
+		<p>在app的独立配置文件中(/addons/tool/doc/config/tool-doc.config.php)，添加如下配置项</p>
+		<php>
+			$config['nb-user/table'] = 'user'; // 用户表的名字
+			$config['nb-user/idColumn'] = 'Id'; // 用户表的主键名
+			$config['nb-user/nameColumn'] = 'UserName'; // 用户表的用户名字段
+		</php>
+		<h3>2. 设置权限的类型</h3>
+    <p>在app的配置文件中(/addons/tool/doc/config/config.php)，添加如下配置项：</p>
+    <php>
+$config['nb-user/item']['blog'] = array(
+  'role' => array( // role 就是角色，权限组的概念
+    'manager' => array('name' => '权限系统管理员', 'description' => '权限系统的管理员'),
+    'user' => array('name' => '权限系统用户')
+  ),
+  'rolePrivilege' => array( // 多对多的角色与权限关系
+    'manager' => array('view', 'operate'),
+    'user' => array('view'),
+  ),
+  'privilege' => array( // 可供分配的权限信息
+    'view' => array('name' => '查看权限系统', 'description' => '可以查看权限系统'),
+    'operate' => array('name' => '操作权限系统'),
+  )
+);
+    </php>
+		<h3>如何为新注册的用户添加权限</h3>
+    <p>在用户注册后，使用 nbUserHelper::addRole() 和 nbUserHelper::addPrivilege() 给用户添加相应的权限</p>
+    <h3>如果编辑用户的权限</h3>
+    <p>只要访问 /nb-user.php 这个地址，就能有后台的管理页面，“用户权限管理”可以对每个用户设置权限</p>
+    <h3>如何判断用户是否有某个权限</h3>
+    <p>提供了 CsUserHelper::havePrivilege($uid, 'csUser/operate'); 此方法判断用户是否有某权限</p>
+	</body>
+</root>

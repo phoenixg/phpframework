@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<res>
+
+    <status>0</status>
+    <number>1</number>
+    <broads>
+
+        <broad>
+            <status>0</status>
+            <id>1016098647724</id>
+            <type>1</type>
+            <time>2010-11-25 14:20:41</time>
+            <uinname>iancheung</uinname>
+            <uinnick>张文驰</uinnick>
+            <headurl>http://t2.qlogo.cn/mbloghead/4a1d0a68851fdeec7b00</headurl>
+            <vip>0</vip>
+            <from>腾讯微博</from>
+            <image/>
+            <content><![CDATA[<a target="_blank" href="http://t.qq.com/k/NIKE%E7%AF%AE%E7%90%83%E6%94%BB%E4%BC%9A">#NIKE篮球攻会#</a>james的新广告片不错啊]]></content>
+            <rtCount>0</rtCount>
+            <srcid/>
+            <srcstatus/>
+            <srcuinname/>
+            <srcuinnick/>
+            <srcheadurl/>
+            <srcvip/>
+            <srcimage/>
+            <srccontent><![CDATA[]]></srccontent>
+            <srctime/>
+            <srcfrom/>
+            <srcrtCount/>
+        </broad>
+
+    </broads>
+
+</res>

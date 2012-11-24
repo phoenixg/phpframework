@@ -242,8 +242,7 @@ class RestRequest
 
 
 //$request = new RestRequest('http://domain.com/api/user/1', 'GET');  
-$request = new RestRequest('http://www.abc-cooking.com.cn', 'GET');  
+$request = new RestRequest('http://www.abc-cooking.com.cn/', 'GET');  
 $request->execute();  
-  
-echo '<pre>' . print_r($request, true) . '</pre>';  
-
+echo '<pre>' . var_dump($request) . '</pre>';  
+die;

@@ -1,0 +1,11 @@
+<root>
+	<head>
+		<id>tool-checker</id>
+		<title>编码扫描工具</title>
+	</head>
+	<body>
+		<h3>使用说明：</h3>
+		<p>访问项目的这个地址：/tool-checker.php</p>
+		<p>会出现相应的三个链接，分别对“规范扫描”，“ 注释扫描”，“缩进扫描”进行扫描，如果有显示相关的信息，则表示有编码规范错误，否则显示空白。</p>
+	</body>
+</root>

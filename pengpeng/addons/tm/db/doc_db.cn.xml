@@ -1,0 +1,331 @@
+<root>
+  <head>
+    <id>tm-db</id>
+    <title>数据结构</title>
+  </head>
+  <body>
+  	<h3>约定</h3>
+		<p>一般腾讯外包网站的数据结构是固定的，只需要导入文件 \tm\db\db.sql即可，再根据需求删减或增加相应的数据表</p>
+  	<h3>用户表</h3>
+  	<pre>
+DROP TABLE IF EXISTS `Tbl_User`;
+CREATE TABLE IF NOT EXISTS `Tbl_User` (
+  `FUserId` int(10) unsigned NOT NULL AUTO_INCREMENT, #用户表的id
+  `FScoreCount` int(11) DEFAULT '0',                  #当前积分
+  `FTotalScoreCount` int(11) DEFAULT '0',             #总积分
+  `FVoteCount` int(11) DEFAULT '0',                   #投票数
+  `FInviteCount` int(11) DEFAULT '0',                 #邀请数
+  `FFileCount` int(11) DEFAULT '0',                   #作品发表数
+  `FBType` tinyint(3) unsigned NOT NULL,              #B类型
+  `FLType` tinyint(3) unsigned NOT NULL,              #L类型
+  `FEnable` tinyint(3) unsigned NOT NULL,             #审核 1表示未审核，2审核通过，3审核不通过
+  `FQQ` varchar(16) NOT NULL,                         #用户QQ号码
+  `FTrueName` varchar(255) NOT NULL,                  #用户真实姓名
+  `FUser` varchar(255) NOT NULL,                      #用户
+  `FPwd` varchar(255) NOT NULL,                       #用户密码
+  `FNick` varchar(255) NOT NULL,                      #用户昵称
+  `FSex` varchar(8) NOT NULL,                         #用户性别 1表示男性，2表示女性
+  `FAge` varchar(8) NOT NULL,                         #用户年龄
+  `FBirthday` varchar(32) NOT NULL,                   #用户生日
+  `FHeight` varchar(8) NOT NULL,                      #用户身高
+  `FWeight` varchar(8) NOT NULL,                      #用户体重
+  `FDegree` varchar(32) NOT NULL,                     #用户学位
+  `FProvince` varchar(32) NOT NULL,                   #用户所在地
+  `FCity` varchar(32) NOT NULL,                       #用户所在城市
+  `FAddr` text NOT NULL,                              #用户地址
+  `FZipCode` varchar(8) NOT NULL,                     #用户邮编
+  `FTel` varchar(32) NOT NULL,                        #用户电话
+  `FMobile` varchar(32) NOT NULL,                     #用户移动电话
+  `FEmail` varchar(255) NOT NULL,                     #用户邮箱
+  `FIdcard` varchar(64) NOT NULL,                     #用户Id卡
+  `FBloodType` varchar(8) NOT NULL,                   #用户血型
+  `FCareer` varchar(255) NOT NULL,                    #用户职业
+  `FCollege` varchar(255) NOT NULL,                   #用户学校
+  `FHomePage` varchar(255) NOT NULL,                  #用户个人主页
+  `FFileName` varchar(255) NOT NULL,                  #用户文件名
+  `FFileUrl` text NOT NULL,                           #用户文件Url
+  `FFileDesc` text NOT NULL,                          #用户文件描述
+  `FFavorate` varchar(255) NOT NULL,                  #用户爱好
+  `FTime` datetime NOT NULL,                          #时间
+  `FDate` date NOT NULL DEFAULT '0000-00-00',         #日期
+  `FLastTime` datetime NOT NULL,                      #最新时间
+  `FPersonalDesc` text NOT NULL,                      #个人描述
+  `FValue1` varchar(32) NOT NULL,                     #值1
+  `FValue2` varchar(32) NOT NULL,                     #值2
+  `FValue3` varchar(32) NOT NULL,                     #值3
+  `FValue4` text NOT NULL,                            #值4
+  `FValue5` text NOT NULL,                            #值5
+  `FQzoneBlog` int(10) NOT NULL,                      #Qzone日志
+  `FQzoneWidget` int(10) NOT NULL,                    #Qzone挂件
+  `FQzoneFeeds` int(10) NOT NULL,                     #Qzone Feeds
+  `FMemo` varchar(255) NOT NULL,                      #备注
+  PRIMARY KEY (`FUserId`),
+  UNIQUE KEY `INDEX_FQQ` (`FQQ`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  	</pre>
+    <h3>作品表</h3>
+    <pre>
+DROP TABLE IF EXISTS `Tbl_File`;
+CREATE TABLE IF NOT EXISTS `Tbl_File` (
+  `FFileId` int(11) NOT NULL AUTO_INCREMENT,          #文件作品表的id
+  `FQQ` varchar(16) NOT NULL,                         #用户QQ
+  `FUserId` int(11) ,                                 #用户Id
+  `FUser` varchar (255),                              #用户
+  `FName` varchar (255),                              #用户名字
+  `FNick` varchar (255),                              #用户昵称
+  `FFriend`varchar (255),                             #用户好友
+  `FType` tinyint (3),                                #用户类型
+  `FSendAll` tinyint (3),                             #用户是否全部发送 1，全部发送 2，没有全部发送
+  `FVoteCount` int(11) DEFAULT '0',                   #投票计数
+  `FViewCount` int(11),                               #浏览计数
+  `FScore` int(11) ,                                  #积分
+  `FCheckTime` datetime ,                             #检查时间
+  `FEnable` tinyint (3),                              #审核 1表示未审核，2审核通过，3审核不通过
+  `FFileName` varchar (255),                          #文件名
+  `FText` text ,                                      #文本内容
+  `FUrl`varchar (255),                                #Url
+  `FMiniUrl` varchar (255),                           #迷你Url
+  `FDesc` varchar (255),                              #描述
+  `FTime` datetime ,                                  #时间
+  `FDate` date ,                                      #日期
+  `FMemo` varchar (255),                              #备注
+  `FState` tinyint (3),                               #状态
+  `FDealTime` datetime ,                              #审核时间
+  `FAudioUrl` varchar (255),                          #音频的url
+  `FVideoUrl` varchar (255),                          #视频的url
+  `FVideoMiniUrl` varchar (255),                      #视频的迷你url
+  PRIMARY KEY (`FFileId`),
+  KEY `FQQ` (`FQQ`),
+	KEY `FDate` (`FDate`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+</pre>
+
+
+
+    <h3>评论表</h3>
+    <pre>
+DROP TABLE IF EXISTS `Tbl_Comment`;
+CREATE TABLE `Tbl_Comment` (
+	`FCommentId`     INT UNSIGNED NOT NULL AUTO_INCREMENT, #评论表的id
+	`FFileId`         INT UNSIGNED NOT NULL,               #文件id
+	`FFileQQ`         VARCHAR(16) NOT NULL,                #上传文件者的QQ
+	`FQQ`         VARCHAR(16) NOT NULL,                    #用户的QQ
+	`FNick`          VARCHAR(255) NOT NULL,                #用户的昵称
+	`FTitle`         VARCHAR(255) NOT NULL,                #标题
+	`FComment`       TEXT NOT NULL,                        #评论
+	`FStrategy`         INT UNSIGNED NOT NULL,             #策略
+	`FTime`          DATETIME NOT NULL,                    #时间
+	`FDate`          DATE NOT NULL,                        #日期
+	`FEnable`        TINYINT UNSIGNED DEFAULT '0' NOT NULL,#审核 1表示未审核，2审核通过，3审核不通过
+	`FCheckTime`     DATETIME NOT NULL,                    #审核时间
+	`FMemo`          VARCHAR(255) NOT NULL DEFAULT '',     #备注
+	PRIMARY KEY (`FCommentId`),
+	INDEX `INDEX_FDESID` (`FFileId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+</pre>
+
+    <h3>邀请好友明细表</h3>
+    <pre>
+DROP TABLE IF EXISTS `Tbl_InviteHistory`;
+CREATE TABLE IF NOT EXISTS `Tbl_InviteHistory` (
+  `FInviteHistoryId` int(10) unsigned NOT NULL AUTO_INCREMENT,  #邀请好友明细表的id
+  `FInviterQQ` varchar(16) NOT NULL,                            #邀请人的QQ
+  `FInviterId` int(10) NOT NULL,                                #邀请人的作品id（仅使用在作品邀请中）
+  `FInviteredQQ` varchar(16) NOT NULL,                          #被邀请人的QQ
+  `FTime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',      #时间
+  `FDate` date NOT NULL DEFAULT '0000-00-00',                   #日期
+  `FMemo` varchar(255) NOT NULL DEFAULT '',                     #备注
+  PRIMARY KEY (`FInviteHistoryId`),
+  KEY `INDEX_FSRCQQ` (`FInviterQQ`),
+  KEY `INDEX_FDESCQQ` (`FInviteredQQ`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+</pre>
+
+    <h3>积分明细表</h3>
+    <pre>
+DROP TABLE IF EXISTS `Tbl_ScoreHistory`;
+CREATE TABLE IF NOT EXISTS `Tbl_ScoreHistory` (
+  `FScoreHistoryId` int(10) unsigned NOT NULL AUTO_INCREMENT,   #积分明细表的id
+  `FQQ` varchar(16) NOT NULL,                                   #用户QQ
+  `FStrategy` varchar(64) NOT NULL,                             #策略
+  `FScore` int(11) NOT NULL DEFAULT '0',                        #积分
+  `FIp` varchar(32) NOT NULL,                                   #Ip
+  `FTime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',      #时间
+  `FDate` date NOT NULL DEFAULT '0000-00-00',                   #日期
+  `FMemo` varchar(255) NOT NULL,                                #备注
+  PRIMARY KEY (`FScoreHistoryId`),
+  KEY `FQQ` (`FQQ`,`FDate`,`FStrategy`),
+  KEY `FDate` (`FDate`,`FStrategy`),
+  KEY `FQQ_2` (`FQQ`,`FStrategy`),
+  KEY `FStrategy` (`FStrategy`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+    	</pre>
+
+    <h3>QZone日志表</h3>
+    <pre>
+DROP TABLE IF EXISTS `Fake_Tbl_Qzonegood`;
+CREATE TABLE IF NOT EXISTS `Fake_Tbl_Qzonegood` (
+  `FQzonegoodId` int(10) NOT NULL AUTO_INCREMENT,#日志表的id
+  `FQQ` varchar(16) NOT NULL,#用户QQ
+  `FType` varchar(255) NOT NULL,#类型
+  `FTime` datetime NOT NULL,#时间
+  `FDate` date NOT NULL,#日期
+  PRIMARY KEY (`FQzonegoodId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+</pre>
+    <h3>奖品表</h3>
+    <pre>
+DROP TABLE IF EXISTS `Tbl_Award`;
+CREATE TABLE IF NOT EXISTS `Tbl_Award` (
+  `FAwardId` int(10) NOT NULL AUTO_INCREMENT,                   #奖品表的id
+  `FQQ` varchar(16) NOT NULL,                                   #用户的QQ
+  `FStrategy` varchar(255) NOT NULL,                            #策略
+  `FTime` datetime NOT NULL,                                    #时间
+  `FDate` date NOT NULL,                                        #日期
+  `FPMProductNo` varchar(255) NOT NULL,                         #奖品编号
+  `FPMItemNo` varchar(255) NOT NULL,                            #项目编号
+  `FPMSendStatus` int(10) NOT NULL,                             #发送状态
+  `FPMDealTime` datetime NOT NULL,                              #处理时间
+  `FAwardZone` varchar(255) NOT NULL,                           #奖品发送到Qzone
+  `FAwardOrder` int(10) NOT NULL,                               #奖品顺序
+  `FMemo` varchar(255) NOT NULL,                                #备注
+  PRIMARY KEY (`FAwardId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+</pre>
+
+    <h3>兑换码表</h3>
+    <pre>
+DROP TABLE IF EXISTS `Tbl_Code`;
+CREATE TABLE IF NOT EXISTS `Tbl_Code` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,                         #兑换码id
+  `FCode` varchar(11) NOT NULL,                                 #兑换码
+  `FStatus` int(1) NOT NULL DEFAULT '0',                        #状态
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `FCode` (`FCode`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+</pre>
+
+    <h3>抽奖明细表</h3>
+    <pre>
+DROP TABLE IF EXISTS `Tbl_LotteryHistory`;
+CREATE TABLE IF NOT EXISTS `Tbl_LotteryHistory` (
+  `FLotteryHistoryId` int(11) NOT NULL AUTO_INCREMENT,#抽奖明细表的id
+  `FQQ` varchar(32) NOT NULL,#用户QQ
+  `FPosition` varchar(255) NOT NULL,#位置
+  `FStrategy` varchar(255) NOT NULL,#策略
+  `FLimitStrategy` varchar(255) NOT NULL,#限制策略
+  `FScoreStrategy` varchar(255) NOT NULL,#积分策略
+  `FAwardStrategy` varchar(255) NOT NULL,#中奖策略
+  `FDate` date NOT NULL,#日期
+  `FTime` datetime NOT NULL,#时间
+  PRIMARY KEY (`FLotteryHistoryId`),
+  KEY `FQQ` (`FQQ`,`FDate`,`FStrategy`),
+  KEY `FDate` (`FDate`,`FStrategy`),
+  KEY `FQQ_2` (`FQQ`,`FStrategy`),
+  KEY `FStrategy` (`FStrategy`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+</pre>
+    <h3>兑换明细表</h3>
+    <pre>
+DROP TABLE IF EXISTS `Tbl_ExchangeHistory`;
+CREATE TABLE IF NOT EXISTS `Tbl_ExchangeHistory` (
+  `FExchangeHistoryId` int(11) NOT NULL AUTO_INCREMENT,     #兑换明细表的id
+  `FQQ` varchar(32) NOT NULL,                               #用户QQ
+  `FCode` varchar(255) NOT NULL,                            #兑换码
+  `FStrategy` varchar(255) NOT NULL,                        #策略
+  `FLimitStrategy` varchar(255) NOT NULL,                   #限制策略
+  `FScoreStrategy` varchar(255) NOT NULL,                   #积分策略
+  `FAwardStrategy` varchar(255) NOT NULL,                   #中奖策略
+  `FDate` date NOT NULL,                                    #日期
+  `FTime` datetime NOT NULL,                                #时间
+  PRIMARY KEY (`FExchangeHistoryId`),
+  KEY `FQQ` (`FQQ`,`FDate`,`FStrategy`),
+  KEY `FDate` (`FDate`,`FStrategy`),
+  KEY `FQQ_2` (`FQQ`,`FStrategy`),
+  KEY `FStrategy` (`FStrategy`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+</pre>
+    <h3>投票明细表</h3>
+    <pre>
+DROP TABLE IF EXISTS `Tbl_VoteHistory`;
+CREATE TABLE IF NOT EXISTS `Tbl_VoteHistory` (
+  `FVoteHistoryId` int(10) unsigned NOT NULL AUTO_INCREMENT,  #投票明细表的id
+  `FStrategy` varchar(255) NOT NULL,                          #投票策略
+  `FLimitStrategy` varchar(255) NOT NULL,                     #投票限制策略
+  `FAwardStrategy` varchar(255) NOT NULL,                     #投票奖品策略
+  `FScoreStrategy` varchar(255) NOT NULL,                     #投票积分策略
+  `FFileId` int(10) unsigned NOT NULL,                        #投票作品策略
+  `FQQ` varchar(16) NOT NULL,                                 #用户QQ
+  `FIp` varchar(32) NOT NULL,                                 #用户Ip
+  `FVoteCounts` varchar(8) NOT NULL,                          #投出的票数
+  `FTime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `FDate` date NOT NULL DEFAULT '0000-00-00',
+  `FMemo` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`FVoteHistoryId`),
+  KEY `INDEX_FSRCQQ` (`FQQ`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+</pre>
+    <h3>挂件明细表</h3>
+    <pre>
+DROP TABLE IF EXISTS `Tbl_WidgetHistory`;
+CREATE TABLE IF NOT EXISTS `Tbl_WidgetHistory` (
+  `FWidgetHistoryId` int(11) NOT NULL AUTO_INCREMENT, #挂件明细表的id
+  `FQQ` varchar(32) NOT NULL,                         #用户QQ
+  `FStrategy` varchar(255) NOT NULL,                  #策略
+  `FLimitStrategy` varchar(255) NOT NULL,             #限制策略
+  `FScoreStrategy` varchar(255) NOT NULL,             #积分策略
+  `FAwardStrategy` varchar(255) NOT NULL,             #中奖策略
+  `FDate` date NOT NULL,                              #日期
+  `FTime` datetime NOT NULL,                          #时间
+  PRIMARY KEY (`FWidgetHistoryId`),
+  KEY `FQQ` (`FQQ`,`FDate`,`FStrategy`),
+  KEY `FDate` (`FDate`,`FStrategy`),
+  KEY `FQQ_2` (`FQQ`,`FStrategy`),
+  KEY `FStrategy` (`FStrategy`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+</pre>
+
+    <h3>发送奖品表</h3>
+    <pre>
+DROP TABLE IF EXISTS `Fake_Send_Tbl_Award`;
+CREATE TABLE IF NOT EXISTS `Fake_Send_Tbl_Award` (
+  `FSendAwardId` int(10) NOT NULL AUTO_INCREMENT,     #发送奖品表的id
+  `FQQ` varchar(16) NOT NULL,                         #用户QQ
+  `FProductNo` varchar(255) NOT NULL,                 #产品编号
+  `FItemNo` varchar(255) NOT NULL,                    #项目编号
+  `FTime` datetime NOT NULL,                          #时间
+  `FDate` date NOT NULL,                              #日期
+  PRIMARY KEY (`FSendAwardId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+</pre>
+
+    <h3>Jump跳转表</h3>
+    <pre>
+DROP TABLE IF EXISTS `Fake_Tbl_Jump`;
+CREATE TABLE IF NOT EXISTS `Fake_Tbl_Jump` (
+  `FJumpId` int(10) NOT NULL AUTO_INCREMENT,          #Jump表的id
+  `FQQ` varchar(255) NOT NULL,                        #用户QQ
+  `FUrl` varchar(255) NOT NULL,                       #跳转的Url
+  `FType` varchar(255) NOT NULL,                      #类型
+  `FTamsId` int(10) unsigned NOT NULL,                #tams的id
+  `FTime` datetime NOT NULL,                          #时间
+  `FDate` date NOT NULL,                              #日期
+  PRIMARY KEY (`FJumpId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+</pre>
+
+    <h3>行为监测表</h3>
+    <pre>
+DROP TABLE IF EXISTS `Fake_Tbl_ActionTrack`;
+CREATE TABLE IF NOT EXISTS `Fake_Tbl_ActionTrack` (
+  `FActionTrackId` int(11) NOT NULL AUTO_INCREMENT,   #行为监测的id
+  `FQQ` varchar(16) NOT NULL,                         #用户QQ
+  `FActionId` varchar(255) NOT NULL,                  #用户行为id
+  `FTamsId` varchar(255) NOT NULL,                    #用户Tams的id
+  `FDate` date NOT NULL,                              #日期
+  `FTime` datetime NOT NULL,                          #时间
+  PRIMARY KEY (`FActionTrackId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+</pre>
+  </body>
+</root>

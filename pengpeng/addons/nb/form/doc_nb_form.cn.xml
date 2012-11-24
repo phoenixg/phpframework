@@ -1,0 +1,84 @@
+<root>
+  <head>
+    <id>nb-form</id>
+    <title>表单系统</title>
+  </head>
+  <body>
+    <h3>表单系统介绍</h3>
+    <p>表单系统分为两个部分，第一部分是一些实现HTML表单的静态类，第二部分是一个快速搭建表单系统的封装</p>
+    <h3>表单的静态类 nbFormWidget，使用举例如下： </h3>
+		<php>
+			// 输出一个文本输入框
+			nbFormWidget::text($name, $value);
+			
+			// 输出一个密码输入框
+			nbFormWidget::password($name, $value);
+			
+			// 输出一个表单提交按钮
+			nbFormWidget::submit();
+			
+			// 输出一个表单隐藏域
+			nbFormWidget::hidden();
+			
+			// 输出一个多选框按钮
+			nbFormWidget::checkbox();
+			
+			// 输出一个下拉菜单
+			nbFormWidget::select();
+			
+			// 输出一段文本
+			nbFormWidget::display();
+		</php>
+		<h3>通过配置生成一个表单系统： </h3>
+		<p>通过配置生成一个表单系统非常简单，只要在模板中使用以下代码：</p>
+		<php>
+			// 新增数据的表单
+			nbWidget::includeComponent('@nb-form', array('name' => 'csUserForm', 'type' => 'add'));
+			// 编辑数据的表单
+			nbWidget::includeComponent('@nb-form', array('name' => 'csUserForm', 'type' => 'edit', 'editValue' => $editValue));
+		</php>
+		<p>在配置文件中要进行如下配置：</p>
+		<php>
+// 表单的请求地址等信息
+$config['nb-form/item']['csUserForm']['formAttribute'] = array(
+  'name' => 'csUserForm',
+  'method' => 'post',
+  'action' => array('path' => 'user/submit'), // 传给的 nbWidget::url()，所以使用数组做参数
+);
+
+// 表单每一项的配置
+$config['nb-form/item']['csUserForm']['columns']['id'] = array(
+  'function' => array(
+    'nbFormWidget::hidden' => array('id', '%id%', array('name' => 'id')) // 在编辑的时候，%id%会被替换为$editValue['id'] 的值
+  ),
+  'needBox' => false, // 表示是否需要显示为一行
+);
+$config['nb-form/item']['csUserForm']['columns']['username'] = array(
+  'function' => array(
+    'nbFormWidget::text' => array('username', '%username%')
+  ),
+  'title' => 'User Name', // 左侧显示的表单标题
+  'help' => 'Please input you username here',
+);
+$config['nb-form/item']['csUserForm']['columns']['oldPassword'] = array(
+  'type' => 'edit', // 如果是 edit，则只在编辑一个表单的时候有
+  'function' => array(
+    'nbFormWidget::password' => array('oldPassword')
+  ),
+  'title' => 'Old Password',
+);
+$config['nb-form/item']['csUserForm']['columns']['newPassword'] = array(
+  'function' => array(
+    'nbFormWidget::password' => array('newPassword')
+  ),
+  'title' => 'New Password',
+);
+$config['nb-form/item']['csUserForm']['columns']['submit'] = array(
+  'function' => array(
+    'nbFormWidget::submit' => array()
+  ),
+  'needTitle' => false, // 是否需要显示左侧的标题
+);
+</php>
+  </body>
+</root>
