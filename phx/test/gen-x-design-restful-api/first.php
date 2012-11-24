@@ -42,6 +42,12 @@ POSTS  /api/users   201 = Created
 
 */
 
+include '../../../share/debug/dBug.php';
+new dBug($_SERVER['REQUEST_METHOD']);
+
+
+echo '<hr />';
+
 class RestUtils
 {
 	public static function processRequest()
