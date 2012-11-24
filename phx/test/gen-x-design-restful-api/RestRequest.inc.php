@@ -10,10 +10,6 @@
 - 响应body
 - 响应HTTP状态码
 - 其他响应信息
-
- 
-
-
 */
 
 
@@ -245,7 +241,8 @@ class RestRequest
 
 
 
-$request = new RestRequest('http://example.com/api/user/1', 'GET');  
+//$request = new RestRequest('http://domain.com/api/user/1', 'GET');  
+$request = new RestRequest('http://www.abc-cooking.com.cn', 'GET');  
 $request->execute();  
   
 echo '<pre>' . print_r($request, true) . '</pre>';  
