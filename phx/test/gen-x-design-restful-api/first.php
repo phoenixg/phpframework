@@ -1,47 +1,4 @@
 <?php
-//无关的： decoupling 解耦  
-// robust 健壮的	
-//utility 应用程序
-//胡静 开车 孩子好 
-
-/*
-教程见：http://www.gen-x-design.com/archives/create-a-rest-api-with-php/
-
-REST，比SOAP和WSDL更好的API方案。
-
-RESTful API：
-
-GET = load/retrieve
-POST = create
-PUT = update
-DELETE = delete
-
-api/users
-api/users/[id]
-
-
-GET   /api/users – List all users
-GET   /api/users/1 – List info for user with ID of 1
-POST   /api/users – Create a new user
-PUT   /api/users/1 – Update user with ID of 1
-DELETE   /api/users/1 – Delete user with ID of 1
-
-/api/users 默认的类型
-/api/users.xml 用户想要 XML 形式的响应
-/api/users.json 用户想要 JSON 形式的响应
-
-
-POSTS  /api/users   201 = Created 
-					500 = Internal Server Error 
-					400 = Bad request
-					501 = Not implemented 如果不允许post
-					503 = Service unavailable mysql服务器宕机
-					返回状态码
-
-
-
-*/
-
 include '../../../share/debug/dBug.php';
 new dBug($_SERVER['REQUEST_METHOD']);
 

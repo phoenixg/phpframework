@@ -1,19 +1,4 @@
 <?php
-/*
-教程见：http://www.gen-x-design.com/archives/making-restful-requests-in-php/
-
-<h3>RESTful请求的基本概念</h3>
-- URL：针对URL进行请求（通常指某种资源）
-- verb：GET, POST, PUT, DELETE等
-- params
-- credentials：用户名，密码
-- 响应body
-- 响应HTTP状态码
-- 其他响应信息
-*/
-
-
- 
 class RestRequest
 {
 	protected $url;
