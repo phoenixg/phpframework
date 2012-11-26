@@ -1,6 +1,10 @@
 <?php
 
 return array(
+	'timezone'		=> 'Asia/Shanghai',
+
+
+
 	'environment'	=> 'development', //or production
 	'mode_debug'	=> 1, 
 	'key'			=> '123456abcdefg',

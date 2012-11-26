@@ -1,6 +1,6 @@
 <?php
 /**
- * Phx - A Micro PHP Framework For Beginners With Some Cool Features
+ * Phx - A Micro PHP Framework For Beginners
  *
  * @author   PHOENIX <gopher.huang@gmail.com>
  * @link     https://github.com/phoenixg/phpframework
@@ -23,7 +23,7 @@ require 'constants.php';
 
 /*
  *---------------------------------------------------------------
- * INCLUDE ALL CORE FILES
+ * INCLUDE ALL CORE LIB FILES
  *---------------------------------------------------------------
  */
 $lib_files = glob(PATH_CORE_LIBS . '*' . EXT);
@@ -60,13 +60,10 @@ unset($config);
 
 /*
  *---------------------------------------------------------------
- * SET TIMEZONE
+ * SET DEFAULT TIMEZONE
  *---------------------------------------------------------------
  */
-date_default_timezone_set('Asia/Shanghai');
-
-
-
+date_default_timezone_set($CFG::get('application.timezone'));
 
 
 /*
@@ -148,6 +145,8 @@ require 'ioc'.EXT;
  * $test = IoC::resolve('classname');
  */
 //$test = IoC::resolve('classname');
+
+
 
 /*
  *---------------------------------------------------------------
