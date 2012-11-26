@@ -6,14 +6,6 @@
  * @link     https://github.com/phoenixg/phpframework
  */
 
-
-/*
- *---------------------------------------------------------------
- * SET TIMEZONE
- *---------------------------------------------------------------
- */
-date_default_timezone_set('Asia/Shanghai');
-
 /*
  *---------------------------------------------------------------
  * INCLUDE dBug
@@ -27,6 +19,55 @@ include './core/debug/dBug.php';
  *---------------------------------------------------------------
  */
 require 'constants.php';
+
+
+/*
+ *---------------------------------------------------------------
+ * INCLUDE ALL CORE FILES
+ *---------------------------------------------------------------
+ */
+$lib_files = glob(PATH_CORE_LIBS . '*' . EXT);
+foreach ($lib_files as $file) {
+    require $file;
+    unset($file);
+}
+unset ($lib_files);
+
+/*
+ *---------------------------------------------------------------
+ * RETRIEVE CONFIGURATION ARRAY FROM CONFIGURATION FILES
+ *---------------------------------------------------------------
+ */
+$config_files = glob(PATH_APP . 'config' . DS . '*' . EXT);
+$config = array();
+foreach ($config_files as $config_file) {
+    $key = substr(strrchr($config_file, DS), 1, -strlen(EXT));
+    $config[$key] = include $config_file;
+    unset($key);
+    unset($config_file);
+}
+unset($config_files);
+
+/*
+ *---------------------------------------------------------------
+ * INITIALIZE CONFIG CLASS
+ *---------------------------------------------------------------
+ * Retrieve config item via: $CFG::get('application.aaa.ddd.eee');
+ */
+$CFG = new Phx\Config($config);
+unset($config);
+
+
+/*
+ *---------------------------------------------------------------
+ * SET TIMEZONE
+ *---------------------------------------------------------------
+ */
+date_default_timezone_set('Asia/Shanghai');
+
+
+
+
 
 /*
  *---------------------------------------------------------------
@@ -91,41 +132,6 @@ class Phxexception extends Exception
     }
 }
 
-/*
- *---------------------------------------------------------------
- * INCLUDE ALL CORE FILES
- *---------------------------------------------------------------
- */
-$lib_files = glob(PATH_CORE_LIBS . '*' . EXT);
-foreach ($lib_files as $file) {
-    require $file;
-    unset($file);
-}
-unset ($lib_files);
-
-/*
- *---------------------------------------------------------------
- * RETRIEVE CONFIGURATION ARRAY FROM CONFIGURATION FILES
- *---------------------------------------------------------------
- */
-$config_files = glob(PATH_APP . 'config' . DS . '*' . EXT);
-$config = array();
-foreach ($config_files as $config_file) {
-    $key = substr(strrchr($config_file, DS), 1, -strlen(EXT));
-    $config[$key] = include $config_file;
-    unset($key);
-    unset($config_file);
-}
-unset($config_files);
-
-/*
- *---------------------------------------------------------------
- * INITIALIZE CONFIG CLASS
- *---------------------------------------------------------------
- * Retrieve config item via: $CFG::get('application.aaa.ddd.eee');
- */
-$CFG = new Phx\Config($config);
-unset($config);
 
 /*
  *---------------------------------------------------------------
