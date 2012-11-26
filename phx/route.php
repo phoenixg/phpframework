@@ -12,7 +12,7 @@ class Route {
 		$action = empty($_GET['a']) ? 'index' : trim($_GET['a']); //设置了默认的action
 
 		$action = 'hello';
-		$controllerFilePath = 'D:\xampp\htdocs\phpframework\phx\app\mvc\controllers\default.php';
+		$controllerFilePath = 'D:\xampp\htdocs\phpframework\phx\app\mvc\controllers\default_controller.php';
 
 
 		if (!is_file($controllerFilePath)) 
@@ -23,6 +23,10 @@ class Route {
 		$controllerName = ucfirst($controller) . '_Controller';
 		if(!class_exists($controllerName)) 
 		    throw new Exception('不存在类：'.$controllerName);
+
+//TODO:自动加载能替代了这里的判断？
+//TODO:怎么一步步编写简单的PHP的Framework（四）
+var_dump($controllerName);
 
 		$controllerHandler = new $controllerName();
 
@@ -36,13 +40,12 @@ class Route {
 
 // 设置控制器和模型的所有类为自动加载
 function __autoload($classname) {
-	$classname = strtolower(substr($classname, 0, strpos($classname, '_')));
-
-	$fileController = PATH_APP_C . $classname . EXT;
+	$fileController = PATH_APP_C . strtolower($classname) . '_controller' . EXT;
 	if (is_file($fileController)) {
 		include $fileController;
 	} else {
-		$fileModel = PATH_APP_M . $classname . EXT;
+		$fileModel = PATH_APP_M . strtolower($classname) . EXT;
+		
 		if (is_file($fileModel)) {
 			include $fileModel;
 		} else {
