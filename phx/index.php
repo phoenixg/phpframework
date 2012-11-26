@@ -160,11 +160,12 @@ require 'ioc'.EXT;
  *---------------------------------------------------------------
  */
 class Controller{}
+class Model{}
 
 $controller = empty($_GET['c']) ? 'default' : trim($_GET['c']); //设置了默认的控制器
 $action = empty($_GET['a']) ? 'index' : trim($_GET['a']); //设置了默认的action
 
-$action = 'index';
+$action = 'hello';
 $controllerFilePath = 'D:\xampp\htdocs\phpframework\phx\app\mvc\controllers\default.php';
 
 
