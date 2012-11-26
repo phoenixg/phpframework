@@ -9,27 +9,40 @@ index.php/controller/method/prarme1/value1
 index.php/controller/method/param1/value1/param2/value2.....
 
 */
+require '../../../share/debug/dBug.php';
 
 
 define('MODULE_DIR', './classes/');
+
+//D:\xampp\htdocs\phpframework\phx\test\ci-like-router\router.php
 $APP_PATH= str_replace($_SERVER['DOCUMENT_ROOT'], '', __FILE__);    
-$SE_STRING=str_replace($APP_PATH, '', $_SERVER['REQUEST_URI']);    //计算出index.php后面的字段 index.php/controller/methon/id/3
+
+$SE_STRING=str_replace($APP_PATH, '', $_SERVER['REQUEST_URI']);   
+//phpframework/phx/test/ci-like-router/router.php 计算出index.php后面的字段 index.php/controller/methon/id/3
 $SE_STRING=trim($SE_STRING,'/');
-//echo $SE_STRING.'<br>';
+
+/*
+$constants = get_defined_constants(true);
+new dBug($constants['user']);
+
+$varialbes = get_defined_vars();
+new dBug($varialbes);
+*/
+
+
 //这里需要对$SE_STRING进行过滤处理。
 $ary_url=array(
     'controller'=>'index',
     'method'=>'index',
     'pramers'=>array()
     );
-//var_dump($ary_url);
+
 $ary_se=explode('/', $SE_STRING);
 $se_count=count($ary_se);
 
 //路由控制
 if($se_count==1 and $ary_se[0]!='' ){
     $ary_url['controller']=$ary_se[0];
-
 }else if($se_count>1){//计算后面的参数，key-value
     $ary_url['controller']=$ary_se[0];
     $ary_url['method']=$ary_se[1];
@@ -42,7 +55,6 @@ if($se_count==1 and $ary_se[0]!='' ){
         }
     }
 }
-
 
 $module_name=$ary_url['controller'];
 $module_file=MODULE_DIR.$module_name.'.class.php';
