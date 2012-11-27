@@ -4,12 +4,14 @@ return array(
 	'timezone'		=> 'Asia/Shanghai',
 	'default_controller' => 'default',
 	'default_action' => 'index',
+	'mode_debug' 	=> true,
+
+
 
 
 	
 
 	'environment'	=> 'development', //or production
-	'mode_debug'	=> 1, 
 	'key'			=> '123456abcdefg',
 	'debug_soft'	=> 'firephp', //or dbug
 	'aaa'			=> array('bbb' => '111',

@@ -1,5 +1,6 @@
 <?php
 class Default_Controller extends Controller {
+
 	public function action_index()
 	{
 		echo 'you are in default controller and default method';
@@ -7,7 +8,9 @@ class Default_Controller extends Controller {
 
 	public function action_hello()
 	{
+
 		echo 'you are in hello';
+		
 		
 		$model = new User_Model();
 		$myVar =  $model->query();

@@ -74,10 +74,16 @@ date_default_timezone_set($CFG::get('application.timezone'));
 
 /*
  *---------------------------------------------------------------
- * SET ERROR REPORTING LEVEL TO ALL
+ * SET ERROR REPORTING LEVEL
  *---------------------------------------------------------------
  */
-error_reporting(E_ALL);
+if ($CFG::get('application.mode_debug')) {
+    ini_set('display_errors','On');
+    error_reporting(E_ALL);
+} else {
+    ini_set('display_errors','Off');
+    error_reporting(0);
+}
 
 /*
  *---------------------------------------------------------------
@@ -178,11 +184,9 @@ function __autoload($classname)
     }  
 } 
 require 'route.php';
-Route::run();
-
-
-
-
+require 'frontcontroller.php';
+$frontController = FrontController::getInstance();
+$frontController->run();
 
 
 /*
