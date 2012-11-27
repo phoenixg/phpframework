@@ -1,6 +1,7 @@
 <?php
 
 return array(
+	'base_url'		=> 'http://localhost/phpframework/phx/',
 	'timezone'		=> 'Asia/Shanghai',
 	'default_controller' => 'default',
 	'default_action' => 'index',

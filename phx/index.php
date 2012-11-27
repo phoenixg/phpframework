@@ -184,13 +184,12 @@ function __autoload($classname)
 require 'frontcontroller.php';
 $frontController = FrontController::getInstance();
 
+// /phpframework/phx/
 // /phpframework/phx/index.php/default/hello/param1/value1/param2/value2/
-$request_url = (isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : '';
+$request_uri = (isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : '';
 
-// /phpframework/phx/index.php/default/hello/param1/value1/param2/value2/
-$script_url  = (isset($_SERVER['PHP_SELF'])) ? $_SERVER['PHP_SELF'] : ''; 
-
-
+// http://localhost/phpframework/phx/
+$CFG::get('application.base_url');
 
 $controller = empty($_GET['c']) ? $CFG::get('application.default_controller') : trim($_GET['c']);
 $action = empty($_GET['a']) ? $CFG::get('application.default_action') : trim($_GET['a']);
