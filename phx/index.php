@@ -184,8 +184,12 @@ function __autoload($classname)
 require 'frontcontroller.php';
 $frontController = FrontController::getInstance();
 
-$request_url = (isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : ''; // '/phpframework/pip/' 
-$script_url  = (isset($_SERVER['PHP_SELF'])) ? $_SERVER['PHP_SELF'] : ''; // '/phpframework/pip/index.php' 
+// /phpframework/phx/index.php/default/hello/param1/value1/param2/value2/
+$request_url = (isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : '';
+
+// /phpframework/phx/index.php/default/hello/param1/value1/param2/value2/
+$script_url  = (isset($_SERVER['PHP_SELF'])) ? $_SERVER['PHP_SELF'] : ''; 
+
 
 
 $controller = empty($_GET['c']) ? $CFG::get('application.default_controller') : trim($_GET['c']);
