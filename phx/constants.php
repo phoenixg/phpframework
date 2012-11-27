@@ -10,7 +10,7 @@ define('PATH_LOGS', 			PATH_BASE . 'logs' . 	DS);
 define('PATH_CORE', 			PATH_BASE . 'core' . 	DS);
 define('PATH_CORE_LIBS', 		PATH_BASE . 'core' . 	DS . 'libs' . 		DS);
 define('PATH_CORE_HELPERS', 	PATH_BASE . 'core' . 	DS . 'helpers' . 	DS);
-define('PATH_CORE_HANDLERS', 	PATH_BASE . 'core' . 	DS . 'handlers' . 	DS);
+define('PATH_CORE_DEBUG', 		PATH_BASE . 'core' . 	DS . 'debug' . 		DS);
 
 // define paths of files
 define('EXT', '.php');

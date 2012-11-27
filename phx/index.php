@@ -8,13 +8,6 @@
 
 /*
  *---------------------------------------------------------------
- * INCLUDE dBug
- *---------------------------------------------------------------
- */
-include './core/debug/dBug.php';
-
-/*
- *---------------------------------------------------------------
  * INCLUDE ALL CONSTANTS WE NEED
  *---------------------------------------------------------------
  */
@@ -80,6 +73,7 @@ date_default_timezone_set($CFG::get('application.timezone'));
 if ($CFG::get('application.mode_debug')) {
     ini_set('display_errors','On');
     error_reporting(E_ALL);
+    include PATH_CORE_DEBUG . 'dBug.php';
 } else {
     ini_set('display_errors','Off');
     error_reporting(0);
