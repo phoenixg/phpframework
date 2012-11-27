@@ -179,22 +179,37 @@ function __autoload($classname)
  *---------------------------------------------------------------
  * ROUTE URI TO CONTROLLER/METHOD
  *---------------------------------------------------------------
- * eg. index.php?c=default&a=index
+ * eg. index.php?c=default&a=index [decrypted]
+ * eg. index.php/default/hello/param1/value1/param2/value2
  */
 require 'frontcontroller.php';
 $frontController = FrontController::getInstance();
 
-// /phpframework/phx/
-// /phpframework/phx/index.php/default/hello/param1/value1/param2/value2/
 $request_uri = (isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : '';
+$request_str = str_replace('/'.$CFG::get('application.base_url').'index.php'.'/', '', $request_uri);
+while(substr($request_str, strlen($request_str)-1) == '/') {
+    $request_str = substr($request_str, 0, -1);
+}
+    
+$request_str_arr = explode('/', $request_str);
+unset($request_uri);
+unset($request_str);
 
-// http://localhost/phpframework/phx/
-$CFG::get('application.base_url');
 
-$controller = empty($_GET['c']) ? $CFG::get('application.default_controller') : trim($_GET['c']);
-$action = empty($_GET['a']) ? $CFG::get('application.default_action') : trim($_GET['a']);
+$controller = empty($request_str_arr['0']) ? $CFG::get('application.default_controller') : $request_str_arr['0'];
+$action = empty($request_str_arr['1']) ?  $CFG::get('application.default_action') : $request_str_arr['1'];
 
 $frontController::route($controller, $action);
+
+
+
+
+
+
+
+
+
+
 
 
 /*
@@ -204,7 +219,7 @@ $frontController::route($controller, $action);
  */
 //new dBug($GLOBALS);
 
-new dBug(get_defined_vars());
+//new dBug(get_defined_vars());
 
 //$constants = get_defined_constants(true);
 //new dBug($constants['user']);

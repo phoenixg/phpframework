@@ -1,7 +1,8 @@
 <?php
 
 return array(
-	'base_url'		=> 'http://localhost/phpframework/phx/',
+	'host_url'		=> 'localhost',
+	'base_url'		=> 'phpframework/phx/',
 	'timezone'		=> 'Asia/Shanghai',
 	'default_controller' => 'default',
 	'default_action' => 'index',
@@ -12,7 +13,6 @@ return array(
 
 	
 
-	'environment'	=> 'development', //or production
 	'key'			=> '123456abcdefg',
 	'debug_soft'	=> 'firephp', //or dbug
 	'aaa'			=> array('bbb' => '111',
