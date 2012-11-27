@@ -1,9 +1,5 @@
 <?php
 
-class Controller{}
-class Model{}
-
-
 class Route {
 
 	// 根据控制器和方法名称，执行控制器对应的方法
