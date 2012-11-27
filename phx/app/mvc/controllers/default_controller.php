@@ -6,9 +6,9 @@ class Default_Controller extends Controller {
 		echo 'you are in default controller and default method';
 	}
 
-	public function action_hello()
+	public function action_hello(array $params)
 	{
-
+		var_dump($params);
 		echo 'you are in hello';
 		
 		

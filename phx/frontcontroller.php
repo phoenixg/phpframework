@@ -17,7 +17,7 @@ class FrontController {
     }
     
     // 根据控制器和方法名称，执行控制器对应的方法
-    public static function route($controller, $action) {
+    public static function route($controller, $action, $params = array()) {
         $controllerName = ucfirst($controller) . '_Controller';
         $controllerHandler = new $controllerName();
 
@@ -25,6 +25,6 @@ class FrontController {
         if(!method_exists($controllerHandler, $action)) 
             throw new Exception('不存在方法：'.$action);
             
-        $controllerHandler->$action();
+        $controllerHandler->$action($params);
     }
 }
