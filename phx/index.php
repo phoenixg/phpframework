@@ -153,13 +153,11 @@ require 'ioc'.EXT;
 //$test = IoC::resolve('classname');
 
 
-
 /*
  *---------------------------------------------------------------
- * ROUTE URI TO CONTROLLER/METHOD
+ * SET CONTROLLER AND MODEL CLASSES TO BE AUTOLOAD
  *---------------------------------------------------------------
  */
-// 设置控制器和模型的所有类为自动加载
 function __autoload($classname) 
 {
     //var_dump($classname);  eg. Default_Controller
@@ -176,7 +174,13 @@ function __autoload($classname)
             throw new Exception('无法自动加载该类：'.$classname);
         }
     }  
-} 
+}
+
+/*
+ *---------------------------------------------------------------
+ * ROUTE URI TO CONTROLLER/METHOD
+ *---------------------------------------------------------------
+ */
 require 'route.php';
 require 'frontcontroller.php';
 $frontController = FrontController::getInstance();
