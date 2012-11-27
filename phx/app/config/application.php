@@ -2,8 +2,11 @@
 
 return array(
 	'timezone'		=> 'Asia/Shanghai',
+	'default_controller' => 'default',
+	'default_action' => 'index',
 
 
+	
 
 	'environment'	=> 'development', //or production
 	'mode_debug'	=> 1, 
