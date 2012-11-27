@@ -56,7 +56,6 @@ unset($config_files);
 $CFG = new Phx\Config($config);
 unset($config);
 
-
 /*
  *---------------------------------------------------------------
  * SET DEFAULT TIMEZONE
@@ -180,11 +179,19 @@ function __autoload($classname)
  *---------------------------------------------------------------
  * ROUTE URI TO CONTROLLER/METHOD
  *---------------------------------------------------------------
+ * eg. index.php?c=default&a=index
  */
-require 'route.php';
 require 'frontcontroller.php';
 $frontController = FrontController::getInstance();
-$frontController->run();
+
+$request_url = (isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : ''; // '/phpframework/pip/' 
+$script_url  = (isset($_SERVER['PHP_SELF'])) ? $_SERVER['PHP_SELF'] : ''; // '/phpframework/pip/index.php' 
+
+
+$controller = empty($_GET['c']) ? $CFG::get('application.default_controller') : trim($_GET['c']);
+$action = empty($_GET['a']) ? $CFG::get('application.default_action') : trim($_GET['a']);
+
+$frontController::route($controller, $action);
 
 
 /*
@@ -193,6 +200,8 @@ $frontController->run();
  *---------------------------------------------------------------
  */
 //new dBug($GLOBALS);
+
+new dBug(get_defined_vars());
 
 //$constants = get_defined_constants(true);
 //new dBug($constants['user']);

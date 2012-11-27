@@ -16,7 +16,15 @@ class FrontController {
         return self::$_instance;
     }
     
-    public function run() {
-        Route::run();
+    // 根据控制器和方法名称，执行控制器对应的方法
+    public static function route($controller, $action) {
+        $controllerName = ucfirst($controller) . '_Controller';
+        $controllerHandler = new $controllerName();
+
+        $action = 'action_'.$action; 
+        if(!method_exists($controllerHandler, $action)) 
+            throw new Exception('不存在方法：'.$action);
+            
+        $controllerHandler->$action();
     }
 }
