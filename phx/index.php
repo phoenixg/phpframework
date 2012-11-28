@@ -184,9 +184,6 @@ function __autoload($classname)
  */
 require 'frontcontroller.php';
 $frontController = FrontController::getInstance();
-
-
-
 $frontController->route();
 
 

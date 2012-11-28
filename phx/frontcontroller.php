@@ -1,5 +1,8 @@
 <?php
 
+/*
+ * 先引导系统，然后单例方式实例化本前端控制器类（FC），FC负责解释请求的变量，接管程序的运行，分发路由至用户自定义的类，即动作控制器（AC）
+ */
 class FrontController {
     private static $_instance = null;
     protected $_controller;
