@@ -1,3 +1,10 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?/$1 [L]
+
+
+
 ####################
 # GZIP COMPRESSION #
 # Copied from : http://stackoverflow.com/questions/12367858/how-can-i-get-apache-gzip-compression-to-work #
