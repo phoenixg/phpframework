@@ -2,7 +2,7 @@
 
 return array(
 	'host_url'		=> 'localhost',
-	'base_url'		=> 'phpframework/phx/',
+	'base_url'		=> '/phpframework/phx/',
 	'timezone'		=> 'Asia/Shanghai',
 	'default_controller' => 'default',
 	'default_action' => 'index',

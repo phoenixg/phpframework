@@ -7,7 +7,7 @@ class FrontController {
     private static $_instance = null;
     protected $_controller;
     protected $_action;
-    protected $_params;
+    protected $_params = array();
     
     // 防止直接new
     private function __construct() {
@@ -15,17 +15,8 @@ class FrontController {
 
         // parse uri into string
         $request_uri = $_SERVER['REQUEST_URI'];
-        var_dump($request_uri);
-        //  /phpframework/phx/
-        //  /phpframework/phx/index.php
-        //  /phpframework/phx/index.php/
-        //  /phpframework/phx/index.php/default/
-        //  /phpframework/phx/index.php/default/hello/
-        //  /phpframework/phx/index.php/default/hello/param1/value1/param2/value2/
-
+        $request_str = str_replace($CFG::get('application.base_url'), '', $request_uri);
         
-
-        $request_str = str_replace('/'.$CFG::get('application.base_url').'index.php'.'/', '', $request_uri);
         while(substr($request_str, strlen($request_str)-1) == '/') {
             $request_str = substr($request_str, 0, -1);
         }
