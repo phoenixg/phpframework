@@ -2,6 +2,21 @@
 
 class Controller {
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// 下面是来自PIP的？
+
 	//加载模型，返回模型对象实例
 	public function loadModel($name)
 	{
@@ -35,9 +50,8 @@ class Controller {
 	//重定向方法
 	public function redirect($loc)
 	{
-		global $config;
-		
 		header('Location: '. $config['base_url'] . $loc);
+		exit;
 	}
     
 }
