@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'host_url'            => 'localhost',
+    'hostname'            => 'localhost',
     'base_url'            => '/phpframework/phx/',
     'timezone'            => 'Asia/Shanghai',
     'default_controller'  => 'default',

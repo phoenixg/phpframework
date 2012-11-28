@@ -10,7 +10,8 @@ class Default_Controller extends Controller {
 	{
 		var_dump($params);
 		echo 'you are in hello';
-		
+
+		$this->test();
 		
 		$model = new User_Model();
 		$myVar =  $model->query();
