@@ -36,6 +36,8 @@ class FrontController {
             $f = $i%2;
             if($f == 0) $this->_params[$request_str_arr[$i]] = empty($request_str_arr[$i + 1]) ? null : $request_str_arr[$i + 1];
         }
+
+        Log::info('Initialized FC successfully');
     }
     
     // 防止直接clone
